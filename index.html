@@ -21,10 +21,10 @@
 
         /* 贺卡容器 */
         .valentine-card {
-padding: 30px; 
+            padding: 30px; 
             width: 100%;
-            min-width: 280px;
-            max-width: 500px;
+            min-width: 200px;
+            max-width: 400px;
             height: 80vh;
             min-height: 500px;
             background-color: #FFC3D3; /* 卡通粉红色 */
@@ -86,7 +86,7 @@ padding: 30px;
             border-radius: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 300px;
+            max-width: 210px;
         }
 
         .love-message p {
@@ -154,8 +154,8 @@ padding: 30px;
        /* 自定义图片按钮样式 */
         .image-button {
             position: fixed;
-            top: 19px;
-            right: 17px;
+            top: 25px;
+            right: 30px;
             width: 30px;
             height: 30px;
             background-image: url('1x1.png');
@@ -207,7 +207,7 @@ box-shadow: 0 0 10px rgba(0,0,0,0.3);
         </div>
         <div class="card-footer">
 
-            <button class="confession-btn" onclick="showLoveHearts()">发送爱心💖</button>
+            <button class="confession-btn" onclick="showLoveHearts()">点击能发送爱心哦~💖</button>
                     </div>
     </div>
 
@@ -236,7 +236,7 @@ audio.play();
 <script>
         function showLoveHearts() {
             const card = document.querySelector('.valentine-card');
-            const hearts = 60; // 爱心数量
+            const hearts = 40; // 爱心数量
 
             for (let i = 0; i < hearts; i++) {
                 const heart = document.createElement('div');
@@ -245,10 +245,10 @@ audio.play();
                 // 设置爱心初始位置和透明度
                 heart.style.left = `${Math.random() * 100}%`;
                 heart.style.bottom = `-${Math.random() * 60}px`;
-                heart.style.opacity = Math.random() * 0.6 + 0.6;
+                heart.style.opacity = Math.random() * 0.5 + 0.5;
 
                 // 设置爱心大小和动画间隔
-                heart.style.width = `${Math.random() * 18 + 18}px`;
+                heart.style.width = `${Math.random() * 16 + 16}px`;
                 heart.style.height = heart.style.width;
 
                 // 添加爱心

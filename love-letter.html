@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>质感情书 | 上传我们的回忆</title>
+    <title>质感情书 | 我们的回忆</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -142,165 +142,40 @@
             text-indent: 2em;
         }
         
-        /* 上传区域样式 */
-        .upload-section {
+        /* 照片说明区域 */
+        .photo-instruction {
             margin: 60px 0;
             padding: 30px;
             background: rgba(232, 226, 217, 0.2);
             border-radius: 18px;
-            border: 2px dashed #c4b6a6;
+            border: 2px solid #c4b6a6;
             text-align: center;
         }
         
-        .upload-title {
+        .instruction-title {
             color: #7a8b99;
             font-size: 1.8em;
             margin-bottom: 20px;
             font-weight: 300;
         }
         
-        .upload-description {
+        .instruction-description {
             color: #9a8c7a;
             margin-bottom: 25px;
             font-size: 1.1em;
+            line-height: 1.6;
         }
         
-        .upload-area {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        .instruction-code {
             background: rgba(255, 255, 255, 0.7);
-            border-radius: 12px;
-            border: 2px solid #d8d1c7;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .upload-area:hover {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: #a8b5c1;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(168, 181, 193, 0.2);
-        }
-        
-        .upload-icon {
-            font-size: 3.5em;
-            color: #a8b5c1;
-            margin-bottom: 15px;
-        }
-        
-        .upload-text {
-            color: #7a8b99;
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-        
-        .upload-hint {
-            color: #9a8c7a;
-            font-size: 0.9em;
-            margin-top: 15px;
-        }
-        
-        #fileInput {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            cursor: pointer;
-        }
-        
-        /* 照片预览区 */
-        .preview-section {
-            margin: 40px 0;
-        }
-        
-        .preview-title {
-            text-align: center;
-            color: #7a8b99;
-            font-size: 1.8em;
-            margin-bottom: 30px;
-            font-weight: 300;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .preview-title:after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #c4b6a6, transparent);
-        }
-        
-        .preview-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        .preview-item {
-            width: 180px;
-            height: 180px;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            color: #4a5a6a;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
             border: 1px solid #d8d1c7;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .preview-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(168, 181, 193, 0.2);
-        }
-        
-        .preview-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .preview-remove {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 28px;
-            height: 28px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #7a8b99;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: all 0.2s ease;
-            border: 1px solid #d8d1c7;
-        }
-        
-        .preview-remove:hover {
-            background: rgba(255, 255, 255, 1);
-            color: #c8102e;
-            transform: scale(1.1);
-        }
-        
-        .preview-empty {
-            text-align: center;
-            color: #9a8c7a;
-            padding: 40px;
-            font-size: 1.1em;
-            background: rgba(232, 226, 217, 0.3);
-            border-radius: 12px;
-            border: 1px dashed #c4b6a6;
         }
         
         /* 照片轮播区 */
@@ -657,37 +532,6 @@
             border-right: 4px solid #c4b6a6;
         }
         
-        /* 提示信息 */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 25px;
-            background: rgba(120, 131, 153, 0.95);
-            color: #f5f0eb;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transform: translateX(120%);
-            transition: transform 0.4s ease;
-            max-width: 300px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        .notification-success {
-            background: rgba(184, 201, 184, 0.95);
-            color: #5a6a5a;
-        }
-        
-        .notification-error {
-            background: rgba(216, 196, 196, 0.95);
-            color: #7a6a6a;
-        }
-        
         @media (max-width: 768px) {
             .mld-letter {
                 padding: 35px 25px;
@@ -714,11 +558,6 @@
                 height: 200px;
             }
             
-            .preview-item {
-                width: 140px;
-                height: 140px;
-            }
-            
             .back-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -743,18 +582,13 @@
     </style>
 </head>
 <body>
-    <!-- 通知提示 -->
-    <div id="notification" class="notification">
-        <div id="notification-text">上传成功！</div>
-    </div>
-    
     <div class="mld-letter">
         <div class="mld-border border-tl">◈</div>
         <div class="mld-border border-tr">✦</div>
         
         <div class="mld-stamp">
             <div class="stamp-text">
-                上传回忆<br>✦ 专 属 ✦<br>我们的故事
+                本地回忆<br>✦ 专 属 ✦<br>我们的故事
             </div>
         </div>
         
@@ -765,9 +599,9 @@
         </div>
         
         <div class="letter-header">
-            <h1 class="letter-title">📸 上传回忆 ✨</h1>
-            <div class="letter-subtitle">上传我们的照片，让回忆在时光中流动</div>
-            <div style="margin-top: 15px; color: #a8b5c1; font-size: 0.95em;">✦ 编号：UPLOAD-2023-001 ✦</div>
+            <h1 class="letter-title">📸 本地回忆 ✨</h1>
+            <div class="letter-subtitle">使用本地照片，让回忆在时光中流动</div>
+            <div style="margin-top: 15px; color: #a8b5c1; font-size: 0.95em;">✦ 编号：LOCAL-2023-001 ✦</div>
         </div>
         
         <div class="mld-symbols">✦ ❁ ✦</div>
@@ -775,8 +609,7 @@
         <div class="letter-content">
             <p>亲爱的：</p>
             <p>我想用流动的照片，记录我们共同走过的时光。每张照片都是一个故事，每个瞬间都值得珍藏。</p>
-            <p>现在，你可以上传我们共同的回忆，让这些珍贵的瞬间在这里流动、轮播，成为我们爱的见证。</p>
-            <p>上传的照片会显示在下面的预览区，并自动添加到轮播和流动画廊中。</p>
+            <p>现在，我已经将我们的回忆照片准备好了，它们会在这里流动、轮播，成为我们爱的见证。</p>
             
             <div class="mld-divider"></div>
             
@@ -786,43 +619,31 @@
             
             <div class="mld-divider"></div>
             
-            <p>上传完成后，你可以：</p>
+            <p>下面的轮播和流动画廊会展示我们的珍贵回忆，你可以：</p>
             <ul style="padding-left: 2em; margin-top: 15px;">
-                <li>在预览区查看所有上传的照片</li>
-                <li>点击照片从预览区删除</li>
-                <li>照片会自动添加到轮播和流动画廊</li>
-                <li>可以控制流动画廊的速度和暂停</li>
+                <li>点击箭头手动切换轮播照片</li>
+                <li>使用下方指示器跳转到特定照片</li>
+                <li>控制流动画廊的速度和暂停</li>
+                <li>将鼠标悬停在流动画廊上暂停播放</li>
             </ul>
         </div>
         
-        <!-- 上传区域 -->
-        <div class="upload-section">
-            <h2 class="upload-title">✦ 上传我们的照片 ✦</h2>
-            <p class="upload-description">点击下方区域选择照片，支持多选</p>
+        <!-- 照片说明区域 -->
+        <div class="photo-instruction">
+            <h2 class="instruction-title">✦ 嘿嘿嘿~ ✦</h2>
+            <p class="instruction-description">
+                要显示您自己的照片，请将照片文件放在与这个HTML文件相同的文件夹中，然后修改JavaScript代码中的图片路径。
+            </p>
             
-            <div class="upload-area" id="uploadArea">
-                <div class="upload-icon">📤</div>
-                <div class="upload-text">点击上传照片</div>
-                <div class="upload-hint">支持 JPG, PNG 格式，每张不超过 5MB</div>
-                <!-- 文件输入框覆盖在整个上传区域上 -->
-                <input type="file" id="fileInput" accept="image/*" multiple>
-            </div>
+            <div class="instruction-code">
+                // 在JavaScript部分找到这个数组，修改图片路径<br>
+                const localPhotos = [<br>
+                &nbsp;&nbsp;{ 敬请期待 }];<br><br>
+                         </div>
             
-            <div class="upload-hint" style="margin-top: 20px;">
-                提示：建议上传尺寸相近的照片以获得最佳显示效果
-            </div>
-        </div>
-        
-        <!-- 照片预览区 -->
-        <div class="preview-section">
-            <h2 class="preview-title">✦ 照片预览 ✦</h2>
-            <div id="previewContainer" class="preview-container">
-                <div class="preview-empty" id="emptyPreview">
-                    <div style="font-size: 3em; margin-bottom: 15px;">📷</div>
-                    <p>还没有上传照片</p>
-                    <p style="font-size: 0.9em; margin-top: 10px;">上传的照片会显示在这里</p>
-                </div>
-            </div>
+            <p class="instruction-description">
+                支持 JPG、PNG、GIF 等常见图片格式。建议使用横向照片以获得最佳显示效果。
+            </p>
         </div>
         
         <!-- 照片轮播区 -->
@@ -884,8 +705,8 @@
             <button onclick="printLetter()" class="back-btn btn-print">
                 🖨️ 打印信件
             </button>
-            <button onclick="clearAllPhotos()" class="back-btn" style="background: linear-gradient(45deg, #d8c4c4, #e5d6d6); color: #7a6a6a;">
-                🗑️ 清空照片
+            <button onclick="reloadPhotos()" class="back-btn" style="background: linear-gradient(45deg, #c4b6a6, #d8d1c7); color: #7a6a6a;">
+                🔄 重新加载照片
             </button>
         </div>
         
@@ -904,168 +725,48 @@
             window.print();
         }
         
-        // 显示通知
-        function showNotification(message, type = 'info') {
-            const notification = document.getElementById('notification');
-            const notificationText = document.getElementById('notification-text');
-            
-            notificationText.textContent = message;
-            notification.className = 'notification';
-            notification.classList.add('show');
-            
-            if (type === 'success') {
-                notification.classList.add('notification-success');
-            } else if (type === 'error') {
-                notification.classList.add('notification-error');
-            }
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-        
-        // 照片数据存储
-        let uploadedPhotos = [];
-        const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-        
-        // 文件上传处理
-        document.getElementById('fileInput').addEventListener('change', function(e) {
-            console.log('文件选择被触发'); // 调试信息
-            
-            const files = e.target.files;
-            let validFilesCount = 0;
-            
-            if (files.length === 0) {
-                console.log('没有选择文件'); // 调试信息
-                return;
-            }
-            
-            console.log(`选择了 ${files.length} 个文件`); // 调试信息
-            
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                
-                // 检查文件类型
-                if (!file.type.match('image.*')) {
-                    showNotification(`文件 "${file.name}" 不是图片格式`, 'error');
-                    continue;
-                }
-                
-                // 检查文件大小
-                if (file.size > MAX_FILE_SIZE) {
-                    showNotification(`文件 "${file.name}" 超过5MB限制`, 'error');
-                    continue;
-                }
-                
-                // 使用FileReader读取文件
-                const reader = new FileReader();
-                
-                reader.onload = function(event) {
-                    console.log(`文件 ${file.name} 读取成功`); // 调试信息
-                    
-                    const photoData = {
-                        id: Date.now() + i,
-                        name: file.name,
-                        url: event.target.result,
-                        caption: file.name.split('.')[0] // 使用文件名作为标题
-                    };
-                    
-                    uploadedPhotos.push(photoData);
-                    validFilesCount++;
-                    
-                    console.log(`已添加照片 ${validFilesCount}/${files.length}`); // 调试信息
-                    
-                    // 如果这是最后一个文件，更新显示
-                    if (validFilesCount === files.length) {
-                        console.log('所有文件读取完成，更新显示'); // 调试信息
-                        updatePreview();
-                        updateCarousel();
-                        updateGallery();
-                        
-                        if (validFilesCount > 0) {
-                            showNotification(`成功上传 ${validFilesCount} 张照片`, 'success');
-                        }
-                    }
-                };
-                
-                reader.onerror = function() {
-                    console.error(`读取文件 "${file.name}" 失败`); // 调试信息
-                    showNotification(`读取文件 "${file.name}" 失败`, 'error');
-                };
-                
-                reader.readAsDataURL(file);
-            }
-            
-            // 清空文件输入，以便可以再次选择相同文件
-            e.target.value = '';
-        });
-        
-        // 更新预览区
-        function updatePreview() {
-            const previewContainer = document.getElementById('previewContainer');
-            const emptyPreview = document.getElementById('emptyPreview');
-            
-            // 清空预览区
-            previewContainer.innerHTML = '';
-            
-            if (uploadedPhotos.length === 0) {
-                // 显示空状态
-                previewContainer.appendChild(emptyPreview);
-                emptyPreview.style.display = 'block';
-                return;
-            }
-            
-            // 隐藏空状态
-            emptyPreview.style.display = 'none';
-            
-            // 添加照片预览
-            uploadedPhotos.forEach((photo, index) => {
-                const previewItem = document.createElement('div');
-                previewItem.className = 'preview-item';
-                
-                const img = document.createElement('img');
-                img.src = photo.url;
-                img.alt = photo.caption;
-                img.className = 'preview-image';
-                
-                const removeBtn = document.createElement('div');
-                removeBtn.className = 'preview-remove';
-                removeBtn.innerHTML = '×';
-                removeBtn.title = '删除这张照片';
-                removeBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    removePhoto(photo.id);
-                });
-                
-                previewItem.appendChild(img);
-                previewItem.appendChild(removeBtn);
-                previewContainer.appendChild(previewItem);
-            });
-        }
-        
-        // 删除照片
-        function removePhoto(id) {
-            uploadedPhotos = uploadedPhotos.filter(photo => photo.id !== id);
-            updatePreview();
+        // 重新加载照片
+        function reloadPhotos() {
             updateCarousel();
             updateGallery();
-            showNotification('照片已删除', 'success');
+            alert('照片已重新加载！');
         }
         
-        // 清空所有照片
-        function clearAllPhotos() {
-            if (uploadedPhotos.length === 0) {
-                showNotification('当前没有照片可以清空', 'info');
-                return;
+        // 本地照片数据 - 修改这里的路径为您的照片路径
+        // 注意：照片需要放在与HTML文件相同的目录下，或者使用相对路径
+        const localPhotos = [
+            {
+                url: 'photo1.jpg', // 替换为您的照片文件名
+                caption: '美好的回忆1'
+            },
+            {
+                url: 'photo2.jpg', // 替换为您的照片文件名
+                caption: '美好的回忆2'
+            },
+            {
+                url: 'photo3.jpg', // 替换为您的照片文件名
+                caption: '美好的回忆3'
+            },
+            {
+                url: 'photo4.jpg', // 替换为您的照片文件名
+                caption: '美好的回忆4'
+            },
+            {
+                url: 'photo5.jpg', // 替换为您的照片文件名
+                caption: '美好的回忆5'
             }
-            
-            if (confirm('确定要清空所有照片吗？此操作不可恢复。')) {
-                uploadedPhotos = [];
-                updatePreview();
-                updateCarousel();
-                updateGallery();
-                showNotification('所有照片已清空', 'success');
-            }
+        ];
+        
+        // 如果照片不存在，显示默认的占位图片
+        function checkImageExists(url, callback) {
+            const img = new Image();
+            img.onload = function() {
+                callback(true);
+            };
+            img.onerror = function() {
+                callback(false);
+            };
+            img.src = url;
         }
         
         // 轮播功能
@@ -1080,7 +781,7 @@
             carouselTrack.innerHTML = '';
             carouselIndicators.innerHTML = '';
             
-            if (uploadedPhotos.length === 0) {
+            if (localPhotos.length === 0) {
                 // 显示默认状态
                 const slide = document.createElement('div');
                 slide.className = 'carousel-slide';
@@ -1088,7 +789,7 @@
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #9a8c7a;">
                         <div style="font-size: 4em; margin-bottom: 20px;">📷</div>
                         <div style="font-size: 1.5em; margin-bottom: 10px;">暂无照片</div>
-                        <div>请先上传照片，它们会显示在这里</div>
+                        <div>请按照上方说明添加您的照片</div>
                     </div>
                 `;
                 carouselTrack.appendChild(slide);
@@ -1096,15 +797,32 @@
             }
             
             // 创建轮播幻灯片
-            uploadedPhotos.forEach((photo, index) => {
-                // 创建幻灯片
-                const slide = document.createElement('div');
-                slide.className = 'carousel-slide';
-                slide.innerHTML = `
-                    <img src="${photo.url}" alt="${photo.caption}" class="carousel-image">
-                    <div class="carousel-caption">${photo.caption}</div>
-                `;
-                carouselTrack.appendChild(slide);
+            localPhotos.forEach((photo, index) => {
+                // 检查图片是否存在
+                checkImageExists(photo.url, function(exists) {
+                    // 创建幻灯片
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide';
+                    
+                    if (exists) {
+                        slide.innerHTML = `
+                            <img src="${photo.url}" alt="${photo.caption}" class="carousel-image">
+                            <div class="carousel-caption">${photo.caption}</div>
+                        `;
+                    } else {
+                        // 如果图片不存在，显示占位符
+                        slide.innerHTML = `
+                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #9a8c7a; background: rgba(232, 226, 217, 0.3); border-radius: 12px;">
+                                <div style="font-size: 3em; margin-bottom: 15px;">❌</div>
+                                <div style="font-size: 1.2em; margin-bottom: 10px;">图片未找到</div>
+                                <div>${photo.url}</div>
+                                <div style="font-size: 0.9em; margin-top: 10px;">请检查文件路径是否正确</div>
+                            </div>
+                        `;
+                    }
+                    
+                    carouselTrack.appendChild(slide);
+                });
                 
                 // 创建指示器
                 const indicator = document.createElement('div');
@@ -1125,7 +843,7 @@
         function startAutoCarousel() {
             clearInterval(autoCarouselInterval);
             
-            if (uploadedPhotos.length <= 1) return;
+            if (localPhotos.length <= 1) return;
             
             autoCarouselInterval = setInterval(() => {
                 nextSlide();
@@ -1134,23 +852,23 @@
         
         // 切换到下一张
         function nextSlide() {
-            if (uploadedPhotos.length === 0) return;
+            if (localPhotos.length === 0) return;
             
-            currentSlide = (currentSlide + 1) % uploadedPhotos.length;
+            currentSlide = (currentSlide + 1) % localPhotos.length;
             updateCarouselDisplay();
         }
         
         // 切换到上一张
         function prevSlide() {
-            if (uploadedPhotos.length === 0) return;
+            if (localPhotos.length === 0) return;
             
-            currentSlide = (currentSlide - 1 + uploadedPhotos.length) % uploadedPhotos.length;
+            currentSlide = (currentSlide - 1 + localPhotos.length) % localPhotos.length;
             updateCarouselDisplay();
         }
         
         // 跳转到指定幻灯片
         function goToSlide(index) {
-            if (uploadedPhotos.length === 0) return;
+            if (localPhotos.length === 0) return;
             
             currentSlide = index;
             updateCarouselDisplay();
@@ -1184,7 +902,7 @@
             // 清空画廊
             flowingGallery.innerHTML = '';
             
-            if (uploadedPhotos.length === 0) {
+            if (localPhotos.length === 0) {
                 // 显示默认状态
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
@@ -1192,7 +910,7 @@
                 galleryItem.innerHTML = `
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #9a8c7a;">
                         <div style="font-size: 3em; margin-bottom: 15px;">🖼️</div>
-                        <div style="text-align: center;">上传照片后，它们会在这里流动显示</div>
+                        <div style="text-align: center;">请按照上方说明添加您的照片</div>
                     </div>
                 `;
                 flowingGallery.appendChild(galleryItem);
@@ -1201,19 +919,32 @@
             }
             
             // 复制照片数据以创建无缝滚动效果
-            const duplicatedPhotos = [...uploadedPhotos, ...uploadedPhotos];
+            const duplicatedPhotos = [...localPhotos, ...localPhotos];
             
             // 创建画廊项目
             duplicatedPhotos.forEach((photo, index) => {
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
                 
-                const img = document.createElement('img');
-                img.src = photo.url;
-                img.alt = photo.caption;
-                img.className = 'gallery-image';
+                // 检查图片是否存在
+                checkImageExists(photo.url, function(exists) {
+                    if (exists) {
+                        const img = document.createElement('img');
+                        img.src = photo.url;
+                        img.alt = photo.caption;
+                        img.className = 'gallery-image';
+                        galleryItem.appendChild(img);
+                    } else {
+                        // 如果图片不存在，显示占位符
+                        galleryItem.innerHTML = `
+                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 200px; color: #9a8c7a; background: rgba(232, 226, 217, 0.3); border-radius: 10px; padding: 10px;">
+                                <div style="font-size: 2em; margin-bottom: 10px;">❌</div>
+                                <div style="text-align: center; font-size: 0.9em;">图片未找到</div>
+                            </div>
+                        `;
+                    }
+                });
                 
-                galleryItem.appendChild(img);
                 flowingGallery.appendChild(galleryItem);
             });
             
@@ -1223,28 +954,26 @@
         
         // 暂停画廊流动
         function pauseGallery() {
-            if (uploadedPhotos.length === 0) {
-                showNotification('没有照片可以暂停', 'info');
+            if (localPhotos.length === 0) {
+                alert('请先添加照片');
                 return;
             }
             flowingGallery.style.animationPlayState = 'paused';
-            showNotification('画廊已暂停', 'success');
         }
         
         // 继续画廊流动
         function resumeGallery() {
-            if (uploadedPhotos.length === 0) {
-                showNotification('没有照片可以恢复', 'info');
+            if (localPhotos.length === 0) {
+                alert('请先添加照片');
                 return;
             }
             flowingGallery.style.animationPlayState = 'running';
-            showNotification('画廊继续流动', 'success');
         }
         
         // 改变画廊流动速度
         function changeGallerySpeed(speed) {
-            if (uploadedPhotos.length === 0) {
-                showNotification('请先上传照片', 'info');
+            if (localPhotos.length === 0) {
+                alert('请先添加照片');
                 return;
             }
             
@@ -1260,12 +989,11 @@
                     duration = '40s';
             }
             flowingGallery.style.animation = `scrollGallery ${duration} linear infinite`;
-            showNotification(`已调整为${speed === 'slow' ? '慢速' : speed === 'fast' ? '快速' : '正常'}流动`, 'success');
         }
         
         // 页面加载动画
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('页面加载完成'); // 调试信息
+            console.log('页面加载完成');
             
             const letter = document.querySelector('.mld-letter');
             letter.style.opacity = '0';
@@ -1278,7 +1006,6 @@
             }, 300);
             
             // 初始化照片显示
-            updatePreview();
             updateCarousel();
             updateGallery();
             
@@ -1289,69 +1016,31 @@
             });
             
             carouselContainer.addEventListener('mouseleave', () => {
-                if (uploadedPhotos.length > 1) {
+                if (localPhotos.length > 1) {
                     startAutoCarousel();
                 }
             });
-            
-            // 为上传区域添加点击测试
-            const uploadArea = document.getElementById('uploadArea');
-            uploadArea.addEventListener('click', function() {
-                console.log('上传区域被点击'); // 调试信息
-            });
-            
-            // 创建漂浮元素
-            createFloatingElements();
         });
         
-        // 创建漂浮的装饰元素
-        function createFloatingElements() {
-            const elements = ['❁', '✦', '✧', '◈', '◉', '◎', '✿', '❀'];
-            const container = document.body;
+        // 示例：如果用户想要添加示例照片，可以使用这个函数
+        function addSamplePhotos() {
+            // 这里可以添加一些示例照片的URL
+            const samplePhotos = [
+                { url: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: '示例风景1' },
+                { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: '示例风景2' },
+                { url: 'https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: '示例风景3' }
+            ];
             
-            for (let i = 0; i < 8; i++) {
-                const element = document.createElement('div');
-                element.className = 'floating-element';
-                element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
-                
-                // 随机位置
-                const left = Math.random() * 90 + 5;
-                const top = Math.random() * 90 + 5;
-                const delay = Math.random() * 5;
-                const duration = Math.random() * 8 + 12;
-                
-                element.style.position = 'absolute';
-                element.style.left = `${left}%`;
-                element.style.top = `${top}%`;
-                element.style.fontSize = `${Math.random() * 1.2 + 0.8}em`;
-                element.style.opacity = Math.random() * 0.3 + 0.2;
-                element.style.zIndex = '-1';
-                element.style.animation = `gentleFloat ${duration}s ease-in-out infinite`;
-                element.style.animationDelay = `${delay}s`;
-                
-                // 添加浮动动画样式
-                if (!document.querySelector('#float-animation')) {
-                    const style = document.createElement('style');
-                    style.id = 'float-animation';
-                    style.textContent = `
-                        @keyframes gentleFloat {
-                            0%, 100% { transform: translateY(0) rotate(0deg); }
-                            50% { transform: translateY(-20px) rotate(5deg); }
-                        }
-                    `;
-                    document.head.appendChild(style);
-                }
-                
-                container.appendChild(element);
-            }
+            // 将示例照片添加到本地照片数组中
+            localPhotos.push(...samplePhotos);
+            updateCarousel();
+            updateGallery();
+            alert('已添加示例照片！请按照上方说明替换为您自己的照片。');
         }
         
-        // 测试函数 - 添加调试功能
-        window.testUpload = function() {
-            console.log('测试上传功能');
-            console.log('已上传照片数量:', uploadedPhotos.length);
-            console.log('文件输入元素:', document.getElementById('fileInput'));
-        };
+        // 为了让用户更容易测试，我们可以提供一个测试按钮
+        // 在实际使用中，您可能不需要这个
+        window.testWithSamplePhotos = addSamplePhotos;
     </script>
 </body>
 </html>

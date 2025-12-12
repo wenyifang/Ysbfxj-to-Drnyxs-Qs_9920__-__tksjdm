@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>完整情书 - 给最爱的你</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: '楷体', 'Microsoft YaHei', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+        
+        .letter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 1px solid #ffebee;
+        }
+        
+        .letter-container:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #a18cd1);
+            z-index: -1;
+            border-radius: 30px;
+            opacity: 0.3;
+        }
+        
+        .letter-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px dashed #ff9a9e;
+            padding-bottom: 20px;
+        }
+        
+        .letter-title {
+            color: #e84393;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .letter-date {
+            color: #888;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        
+        .letter-content {
+            font-size: 1.3em;
+            color: #333;
+            text-indent: 2em;
+            margin-bottom: 30px;
+        }
+        
+        .letter-signature {
+            text-align: right;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ff9a9e;
+        }
+        
+        .signature-name {
+            font-size: 1.8em;
+            color: #e84393;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .hearts {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 2em;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+        
+        .envelope {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            animation: swing 2s ease-in-out infinite;
+        }
+        
+        @keyframes swing {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+        
+        .stamp {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(45deg, #e84393, #fd79a8);
+            border-radius: 10px;
+            transform: rotate(-10deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+            padding: 5px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="letter-container">
+        <div class="stamp">LOVE<br>邮票</div>
+        <div class="envelope">💌</div>
+        
+        <div class="letter-header">
+            <h1 class="letter-title">给最爱的你</h1>
+            <div class="letter-date">❤️ 永远爱你的日子 ❤️</div>
+        </div>
+        
+        <div class="hearts">❤️ ❤️ ❤️</div>
+        
+        <div class="letter-content">
+            <p>我亲爱的宝贝：</p>
+            <p>提笔写这封信的时候，我的心中充满了无限的温柔与感激。遇见你，是我生命中最美丽的意外；爱上你，是我做过最正确的决定。</p>
+            <p>还记得我们第一次相遇的那个午后吗？阳光洒在你的身上，你微微一笑，那一刻，时间仿佛静止了。从那天起，我的世界因为你的出现而变得五彩斑斓。</p>
+            <p>每一天，我都想告诉你：</p>
+            <p>我喜欢你清晨睡眼朦胧的样子，喜欢你专注工作时认真的神情，喜欢你吃到美食时满足的笑容，喜欢你所有的小习惯和小脾气。</p>
+            <p>你就像春天里最温暖的风，夏天里最清凉的雨，秋天里最绚烂的枫叶，冬天里最纯净的雪花。有了你，四季都变得如此美好。</p>
+            <p>我想要和你一起看遍世间风景，尝遍天下美食。想要在每一个清晨醒来时第一眼看到的就是你，在每一个夜晚入睡前最后一个道晚安的人也是你。</p>
+            <p>未来的路还很长，可能会有风雨，可能会有坎坷，但只要我们牵着彼此的手，就没有什么可以阻挡我们前进的脚步。</p>
+            <p>请相信，我会一直在这里，爱你、宠你、守护你。你的快乐是我的快乐，你的悲伤是我的悲伤。我愿意用我的一生，去证明我对你的爱。</p>
+        </div>
+        
+        <div class="hearts">💖 💖 💖</div>
+        
+        <div class="letter-signature">
+            <p>永远爱你的，</p>
+            <div class="signature-name">你的宝宝</div>
+            <div style="color: #888; margin-top: 5px;">2025年12月12日</div>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="javascript:history.back()" class="back-button">← 返回上一页</a>
+            <a href="index.html" class="back-button" style="margin-left: 15px; background: linear-gradient(45deg, #00b894, #55efc4);">🏠 回到首页</a>
+        </div>
+    </div>
+
+    <script>
+        // 设置当前日期
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.querySelector('.letter-date').textContent = 
+            `📅 ${now.toLocaleDateString('zh-CN', options)} ❤️`;
+        
+        // 添加页面进入动画
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.letter-container').style.opacity = '0';
+            document.querySelector('.letter-container').style.transform = 'translateY(50px)';
+            
+            setTimeout(() => {
+                document.querySelector('.letter-container').style.transition = 'all 1s ease';
+                document.querySelector('.letter-container').style.opacity = '1';
+                document.querySelector('.letter-container').style.transform = 'translateY(0)';
+            }, 200);
+        });
+    </script>
+</body>
+</html>

@@ -3,9 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>质感情书 | 我们的回忆</title>
+    <title>私密情书 | 我们的回忆</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ================== 莫兰迪浅色密码保护层样式 ================== */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f8f4e9 0%, #e8e4d9 50%, #f0ece1 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .password-overlay:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(168, 188, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(182, 165, 158, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(152, 178, 178, 0.1) 0%, transparent 50%);
+            animation: pulseBackground 15s ease-in-out infinite;
+        }
+        
+        @keyframes pulseBackground {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* 添加莫兰迪风格的小圆点背景 */
+        .password-overlay:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(168, 188, 198, 0.05) 2px, transparent 2px),
+                radial-gradient(circle at 90% 40%, rgba(182, 165, 158, 0.05) 2px, transparent 2px),
+                radial-gradient(circle at 50% 80%, rgba(152, 178, 178, 0.05) 2px, transparent 2px);
+            background-size: 100px 100px, 150px 150px, 120px 120px;
+            z-index: 0;
+        }
+        
+        .password-container {
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 28px;
+            padding: 60px 50px;
+            width: 100%;
+            max-width: 520px;
+            border: 1px solid rgba(210, 203, 189, 0.4);
+            box-shadow: 
+                0 25px 50px rgba(168, 181, 193, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.8),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+            text-align: center;
+            backdrop-filter: blur(10px) saturate(180%);
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .password-container:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, 
+                #d8c4c4 0%, 
+                #b8c9b8 25%, 
+                #a8b5c1 50%, 
+                #c4b6a6 75%, 
+                #d8c4c4 100%);
+            background-size: 200% 100%;
+            animation: gradientShift 6s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 200% 0; }
+            100% { background-position: 0 0; }
+        }
+        
+        .password-container:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            padding: 1px;
+            background: linear-gradient(135deg, 
+                rgba(210, 203, 189, 0.2) 0%, 
+                rgba(210, 203, 189, 0) 30%, 
+                rgba(210, 203, 189, 0.1) 70%, 
+                rgba(210, 203, 189, 0.2) 100%);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        .lock-icon-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 35px;
+        }
+        
+        .lock-icon-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(168, 188, 198, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .lock-icon {
+            position: relative;
+            font-size: 4.8em;
+            color: #a8b5c1;
+            z-index: 2;
+            filter: drop-shadow(0 5px 15px rgba(168, 181, 193, 0.2));
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-12px) rotate(3deg); }
+            66% { transform: translateY(-6px) rotate(-3deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.08); opacity: 0.4; }
+        }
+        
+        .password-title {
+            color: #7a8b99;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 350;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(122, 139, 153, 0.1);
+        }
+        
+        .password-subtitle {
+            color: #9a8c7a;
+            font-size: 1.3em;
+            margin-bottom: 45px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        .password-form {
+            margin-top: 35px;
+        }
+        
+        .password-input-wrapper {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .password-input-wrapper:before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 18px;
+            padding: 2px;
+            background: linear-gradient(135deg, 
+                rgba(168, 181, 193, 0.4) 0%, 
+                rgba(196, 182, 166, 0.3) 50%, 
+                rgba(168, 181, 193, 0.4) 100%);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 22px 30px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.85);
+            color: #7a8b99;
+            transition: all 0.4s ease;
+            box-sizing: border-box;
+            letter-spacing: 2px;
+            box-shadow: 
+                inset 0 1px 3px rgba(168, 181, 193, 0.1),
+                0 4px 12px rgba(168, 181, 193, 0.08);
+            border: 1px solid rgba(210, 203, 189, 0.3);
+        }
+        
+        .password-input::placeholder {
+            color: rgba(122, 139, 153, 0.5);
+            letter-spacing: normal;
+        }
+        
+        .password-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 
+                inset 0 1px 3px rgba(168, 181, 193, 0.2),
+                0 5px 20px rgba(168, 181, 193, 0.15);
+            border: 1px solid rgba(168, 181, 193, 0.4);
+        }
+        
+        .password-input:focus + .password-input-wrapper:before {
+            opacity: 1;
+            animation: gradientShift 2s linear infinite;
+        }
+        
+        .password-btn {
+            width: 100%;
+            padding: 22px;
+            background: linear-gradient(135deg, #a8b5c1 0%, #b8c5d1 50%, #a8b5c1 100%);
+            background-size: 200% 100%;
+            color: #4a5a6a;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.3em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 
+                0 8px 20px rgba(168, 181, 193, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            border: 1px solid rgba(184, 197, 209, 0.4);
+        }
+        
+        .password-btn:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .password-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 35px rgba(168, 181, 193, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.5);
+            background-position: 100% 0;
+            color: #3a4a5a;
+        }
+        
+        .password-btn:hover:before {
+            left: 100%;
+        }
+        
+        .password-btn:active {
+            transform: translateY(-2px);
+            transition: transform 0.1s ease;
+        }
+        
+        .error-message {
+            color: #c98787;
+            margin-top: 25px;
+            font-size: 1.05em;
+            min-height: 28px;
+            opacity: 0;
+            transition: all 0.4s ease;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(201, 135, 135, 0.08);
+            border: 1px solid rgba(201, 135, 135, 0.15);
+            backdrop-filter: blur(5px);
+            transform: translateY(-10px);
+        }
+        
+        .error-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .password-hint {
+            color: #9a8c7a;
+            font-size: 1em;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(210, 203, 189, 0.4);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+        
+        .attempts-counter {
+            color: #c98787;
+            font-size: 0.95em;
+            margin-top: 20px;
+            font-weight: 500;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(201, 135, 135, 0.08);
+            border: 1px solid rgba(201, 135, 135, 0.15);
+            backdrop-filter: blur(5px);
+        }
+        
+        .password-footer {
+            color: rgba(154, 140, 122, 0.6);
+            font-size: 0.85em;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px dashed rgba(210, 203, 189, 0.4);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        /* ================== 隐藏的内容区域 ================== */
+        .content-area {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        
+        .content-area.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ================== 原有情书页面样式 ================== */
         * {
             margin: 0;
             padding: 0;
@@ -178,7 +531,7 @@
             border: 1px solid #d8d1c7;
         }
         
-        /* 照片轮播区 */
+        /* 照片轮播区 - 已移除底部标题栏 */
         .photo-carousel-section {
             margin: 60px 0;
             position: relative;
@@ -208,7 +561,7 @@
         .carousel-container {
             position: relative;
             width: 100%;
-            height: 350px;
+            height: 400px; /* 增加了高度，因为移除了底部标题栏 */
             overflow: hidden;
             border-radius: 16px;
             background: rgba(232, 226, 217, 0.2);
@@ -239,24 +592,13 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         }
         
-        .carousel-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(120, 131, 153, 0.85);
-            color: #f5f0eb;
-            padding: 15px;
-            text-align: center;
-            font-size: 1em;
-            font-weight: 300;
-        }
+        /* 移除了.carousel-caption样式 */
         
         .carousel-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             color: #7a8b99;
             border: 1px solid #d8d1c7;
             width: 45px;
@@ -269,11 +611,13 @@
             z-index: 10;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
+            box-shadow: 0 4px 12px rgba(168, 181, 193, 0.15);
         }
         
         .carousel-nav:hover {
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 5px 15px rgba(168, 181, 193, 0.3);
+            transform: translateY(-50%) scale(1.1);
         }
         
         .carousel-prev {
@@ -299,15 +643,17 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.7);
             border: 1px solid #d8d1c7;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         
         .carousel-indicator.active {
             background: rgba(168, 181, 193, 0.9);
             transform: scale(1.2);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
         }
         
         /* 流动照片画廊 */
@@ -449,6 +795,9 @@
             align-items: center;
             gap: 10px;
             box-shadow: 0 6px 20px rgba(168, 181, 193, 0.15);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1em;
         }
         
         .back-btn:hover {
@@ -456,16 +805,28 @@
             box-shadow: 0 10px 25px rgba(168, 181, 193, 0.25);
         }
         
-        .btn-home {
+        .btn-lock {
             background: linear-gradient(45deg, #d8c4c4, #e5d6d6);
             color: #7a6a6a;
             border: 1px solid #d4c2c2;
         }
         
-        .btn-print {
+        .btn-home {
             background: linear-gradient(45deg, #b8c9b8, #d1ddd1);
             color: #5a6a5a;
             border: 1px solid #c2d1c2;
+        }
+        
+        .btn-back {
+            background: linear-gradient(45deg, #a8b5c1, #c5d0d9);
+            color: #4a5a6a;
+            border: 1px solid #b8c5d1;
+        }
+        
+        .btn-password {
+            background: linear-gradient(45deg, #d8c4c4, #e5d6d6);
+            color: #7a6a6a;
+            border: 1px solid #d4c2c2;
         }
         
         .mld-border {
@@ -532,6 +893,7 @@
             border-right: 4px solid #c4b6a6;
         }
         
+        /* 响应式设计 */
         @media (max-width: 768px) {
             .mld-letter {
                 padding: 35px 25px;
@@ -551,7 +913,7 @@
             }
             
             .carousel-container {
-                height: 250px;
+                height: 300px; /* 移动端调整高度 */
             }
             
             .gallery-container {
@@ -578,162 +940,401 @@
             .gallery-controls {
                 flex-wrap: wrap;
             }
+            
+            /* 密码保护层响应式 */
+            .password-container {
+                padding: 40px 25px;
+            }
+            
+            .password-title {
+                font-size: 2.2em;
+            }
+            
+            .lock-icon-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .lock-icon {
+                font-size: 3.8em;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="mld-letter">
-        <div class="mld-border border-tl">◈</div>
-        <div class="mld-border border-tr">✦</div>
-        
-        <div class="mld-stamp">
-            <div class="stamp-text">
-                本地回忆<br>✦ 专 属 ✦<br>我们的故事
+    <!-- ================== 莫兰迪浅色密码保护层 ================== -->
+    <div id="passwordOverlay" class="password-overlay">
+        <div class="password-container">
+            <div class="lock-icon-wrapper">
+                <div class="lock-icon-bg"></div>
+                <div class="lock-icon">🔐</div>
+            </div>
+            <h1 class="password-title">私密情书</h1>
+            <div class="password-subtitle">
+                这份情书记录着我们最珍贵的回忆<br>
+                请输入密码查看我们的专属空间
+            </div>
+            
+            <form id="passwordForm" class="password-form">
+                <div class="password-input-wrapper">
+                    <input 
+                        type="password" 
+                        id="passwordInput" 
+                        class="password-input" 
+                        placeholder="请输入访问密码" 
+                        autocomplete="off"
+                        required
+                        autofocus
+                    >
+                </div>
+                
+                <button type="submit" class="password-btn">
+                    <i class="fas fa-key"></i> 解锁情书
+                </button>
+            </form>
+            
+            <div id="errorMessage" class="error-message"></div>
+            <div id="attemptsCounter" class="attempts-counter"></div>
+            
+            <div class="password-hint">
+                💡 提示：密码是我们重要的纪念日（8位数字）
+            </div>
+            
+            <div class="password-footer">
+                ⚠️ 此页面受密码保护，请勿随意分享
             </div>
         </div>
-        
-        <div class="mld-seal">
-            <div>私密</div>
-            <div style="margin: 8px 0; font-size: 1.5em;">📸</div>
-            <div>相册</div>
-        </div>
-        
-        <div class="letter-header">
-            <h1 class="letter-title">📸 本地回忆 ✨</h1>
-            <div class="letter-subtitle">使用本地照片，让回忆在时光中流动</div>
-            <div style="margin-top: 15px; color: #a8b5c1; font-size: 0.95em;">✦ 编号：LOCAL-2023-001 ✦</div>
-        </div>
-        
-        <div class="mld-symbols">✦ ❁ ✦</div>
-        
-        <div class="letter-content">
-            <p>亲爱的：</p>
-            <p>我想用流动的照片，记录我们共同走过的时光。每张照片都是一个故事，每个瞬间都值得珍藏。</p>
-            <p>现在，我已经将我们的回忆照片准备好了，它们会在这里流动、轮播，成为我们爱的见证。</p>
+    </div>
+    
+    <!-- ================== 情书内容区域 ================== -->
+    <div id="contentArea" class="content-area" style="display: none;">
+        <div class="mld-letter">
+            <div class="mld-border border-tl">◈</div>
+            <div class="mld-border border-tr">✦</div>
+            
+            <div class="mld-stamp">
+                <div class="stamp-text">
+                    私密回忆<br>✦ 专 属 ✦<br>我们的故事
+                </div>
+            </div>
+            
+            <div class="mld-seal">
+                <div>嘿嘿~</div>
+                <div style="margin: 8px 0; font-size: 1.5em;">📸</div>
+                <div>爱你~</div>
+            </div>
+            
+            <div class="letter-header">
+                <h1 class="letter-title">📸 浪漫回忆 ✨</h1>
+                <div class="letter-subtitle">欢迎进入我们的专属空间</div>
+                <div style="margin-top: 15px; color: #a8b5c1; font-size: 0.95em;">✦ 编号：Y&W-2026-0105 ✦</div>
+                <div id="accessTime" style="margin-top: 10px; color: #c4b6a6; font-size: 0.85em;"></div>
+            </div>
+            
+            <div class="mld-symbols">✦ ❁ ✦</div>
+            
+            <div class="letter-content">
+                <p>我亲爱滴老公：</p>
+                <p>欢迎来到我们的私密空间。这里记录着我们共同走过的时光，每一张照片都是一个故事，每一个瞬间都值得珍藏。</p>
+                <p>这是我们之间的专属约定。</p>
+                
+                <div class="mld-divider"></div>
+                
+                <div class="highlight-quote">
+                    "最珍贵的回忆，只与最重要的人分享。"
+                </div>
+                
+                <div class="mld-divider"></div>
+                
+                <p>下面的照片会以两种方式展示：自动轮播的精选回忆和流动的时光画廊。你可以：</p>
+                <ul style="padding-left: 2em; margin-top: 15px;">
+                    <li>点击箭头手动切换轮播照片</li>
+                    <li>使用下方指示器跳转到特定照片</li>
+                    <li>控制流动画廊的速度和暂停</li>
+                    <li>将鼠标悬停在流动画廊上暂停播放</li>
+                </ul>
+            </div>
+            
+            <!-- 照片轮播区 - 已移除底部标题栏 -->
+            <div class="photo-carousel-section">
+                <h2 class="section-title">✦ 精选回忆轮播 ✦</h2>
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- 轮播幻灯片将通过JS动态添加 -->
+                    </div>
+                    <div class="carousel-nav carousel-prev" onclick="prevSlide()">❮</div>
+                    <div class="carousel-nav carousel-next" onclick="nextSlide()">❯</div>
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        <!-- 指示器将通过JS动态添加 -->
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 15px; color: #9a8c7a; font-size: 0.9em;">
+                    轮播将自动播放，鼠标悬停在轮播区可暂停
+                </div>
+            </div>
             
             <div class="mld-divider"></div>
             
-            <div class="highlight-quote">
-                "最好的爱情，是创造无数值得珍藏的瞬间。"
-            </div>
-            
-            <div class="mld-divider"></div>
-            
-            <p>下面的轮播和流动画廊会展示我们的珍贵回忆，你可以：</p>
-            <ul style="padding-left: 2em; margin-top: 15px;">
-                <li>点击箭头手动切换轮播照片</li>
-                <li>使用下方指示器跳转到特定照片</li>
-                <li>控制流动画廊的速度和暂停</li>
-                <li>将鼠标悬停在流动画廊上暂停播放</li>
-            </ul>
-        </div>
-        
-        <!-- 照片说明区域 -->
-        <div class="photo-instruction">
-            <h2 class="instruction-title">✦ 嘿嘿嘿~ ✦</h2>
-            <p class="instruction-description">
-                要显示您自己的照片，请将照片文件放在与这个HTML文件相同的文件夹中，然后修改JavaScript代码中的图片路径。
-            </p>
-            
-            <div class="instruction-code">
-                // 在JavaScript部分找到这个数组，修改图片路径<br>
-                const localPhotos = [<br>
-                &nbsp;&nbsp;{ 敬请期待 }];<br><br>
-                         </div>
-            
-            <p class="instruction-description">
-                支持 JPG、PNG、GIF 等常见图片格式。建议使用横向照片以获得最佳显示效果。
-            </p>
-        </div>
-        
-        <!-- 照片轮播区 -->
-        <div class="photo-carousel-section">
-            <h2 class="section-title">✦ 回忆轮播 ✦</h2>
-            <div class="carousel-container">
-                <div class="carousel-track" id="carouselTrack">
-                    <!-- 轮播幻灯片将通过JS动态添加 -->
+            <!-- 流动照片画廊 -->
+            <div class="flowing-gallery-section">
+                <h2 class="section-title">✦ 时光流动画廊 ✦</h2>
+                <div class="gallery-container">
+                    <div class="flowing-gallery" id="flowingGallery">
+                        <!-- 流动画廊图片将通过JS动态添加 -->
+                    </div>
                 </div>
-                <div class="carousel-nav carousel-prev" onclick="prevSlide()">❮</div>
-                <div class="carousel-nav carousel-next" onclick="nextSlide()">❯</div>
-                <div class="carousel-indicators" id="carouselIndicators">
-                    <!-- 指示器将通过JS动态添加 -->
+                <div class="gallery-controls">
+                    <button class="gallery-btn" onclick="pauseGallery()"><i class="fas fa-pause"></i> 暂停流动</button>
+                    <button class="gallery-btn btn-pause" onclick="resumeGallery()"><i class="fas fa-play"></i> 继续流动</button>
+                    <button class="gallery-btn" onclick="changeGallerySpeed('slow')"><i class="fas fa-tachometer-alt"></i> 慢速</button>
+                    <button class="gallery-btn" onclick="changeGallerySpeed('normal')"><i class="fas fa-tachometer-alt"></i> 正常</button>
+                    <button class="gallery-btn" onclick="changeGallerySpeed('fast')"><i class="fas fa-tachometer-alt"></i> 快速</button>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 15px; color: #9a8c7a; font-size: 0.9em;">
-                轮播将自动播放，鼠标悬停在轮播区可暂停
+            
+            <div class="mld-symbols">◈ ✦ ◈</div>
+            
+            <div class="letter-signature">
+                <p>愿这些流动的瞬间，</p>
+                <p>成为我们永不褪色的记忆。</p>
+                <div class="signature-name">你的宝宝</div>
+                <div class="signature-title">珍藏时光的人</div>
+                <div style="color: #a8b5c1; margin-top: 15px;">创建日期：<span id="current-date"></span></div>
             </div>
-        </div>
-        
-        <div class="mld-divider"></div>
-        
-        <!-- 流动照片画廊 -->
-        <div class="flowing-gallery-section">
-            <h2 class="section-title">✦ 时光流动画廊 ✦</h2>
-            <div class="gallery-container">
-                <div class="flowing-gallery" id="flowingGallery">
-                    <!-- 流动画廊图片将通过JS动态添加 -->
-                </div>
+            
+            <div class="letter-badge">✦ 独家记忆 ✦</div>
+            
+            <div class="back-buttons">
+                <button onclick="lockPage()" class="back-btn btn-lock">
+                    🔒 重新锁定页面
+                </button>
+                <button onclick="goBack()" class="back-btn btn-back">
+                    ↩️ 回到上一页
+                </button>
+                <button onclick="goHome()" class="back-btn btn-home">
+                    🏠 回到首页
+                </button>
+                <button onclick="changePassword()" class="back-btn btn-password">
+                    🔑 修改密码
+                </button>
             </div>
-            <div class="gallery-controls">
-                <button class="gallery-btn" onclick="pauseGallery()"><i class="fas fa-pause"></i> 暂停流动</button>
-                <button class="gallery-btn btn-pause" onclick="resumeGallery()"><i class="fas fa-play"></i> 继续流动</button>
-                <button class="gallery-btn" onclick="changeGallerySpeed('slow')"><i class="fas fa-tachometer-alt"></i> 慢速</button>
-                <button class="gallery-btn" onclick="changeGallerySpeed('normal')"><i class="fas fa-tachometer-alt"></i> 正常</button>
-                <button class="gallery-btn" onclick="changeGallerySpeed('fast')"><i class="fas fa-tachometer-alt"></i> 快速</button>
-            </div>
+            
+            <div class="mld-border border-bl">◉</div>
+            <div class="mld-border border-br">◎</div>
         </div>
-        
-        <div class="mld-symbols">◈ ✦ ◈</div>
-        
-        <div class="letter-signature">
-            <p>愿这些流动的瞬间，</p>
-            <p>成为我们永不褪色的记忆。</p>
-            <div class="signature-name">[你的名字]</div>
-            <div class="signature-title">珍藏时光的人</div>
-            <div style="color: #a8b5c1; margin-top: 15px;">日期：<span id="current-date"></span></div>
-        </div>
-        
-        <div class="letter-badge">✦ 独家记忆 ✦</div>
-        
-        <div class="back-buttons">
-            <a href="javascript:history.back()" class="back-btn">
-                ◀ 返回上一页
-            </a>
-            <a href="index.html" class="back-btn btn-home">
-                🏠 回到首页
-            </a>
-            <button onclick="printLetter()" class="back-btn btn-print">
-                🖨️ 打印信件
-            </button>
-            <button onclick="reloadPhotos()" class="back-btn" style="background: linear-gradient(45deg, #c4b6a6, #d8d1c7); color: #7a6a6a;">
-                🔄 重新加载照片
-            </button>
-        </div>
-        
-        <div class="mld-border border-bl">◉</div>
-        <div class="mld-border border-br">◎</div>
     </div>
 
     <script>
-        // 设置当前日期
-        const now = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
-        document.getElementById('current-date').textContent = now.toLocaleDateString('zh-CN', options);
+        // ================== 密码保护功能 ==================
+        // 配置密码（请修改这个值为您自己的密码）
+        const CORRECT_PASSWORD = "20250829"; // 默认密码：5201314（我爱你一生一世）
+        // 提示：请修改为您自己的密码，比如纪念日20230520
         
-        // 打印功能
-        function printLetter() {
-            window.print();
+        // 尝试次数限制
+        const MAX_ATTEMPTS = 5;
+        let attempts = 0;
+        
+        // 获取DOM元素
+        const passwordOverlay = document.getElementById('passwordOverlay');
+        const passwordForm = document.getElementById('passwordForm');
+        const passwordInput = document.getElementById('passwordInput');
+        const errorMessage = document.getElementById('errorMessage');
+        const attemptsCounter = document.getElementById('attemptsCounter');
+        const contentArea = document.getElementById('contentArea');
+        const accessTimeElement = document.getElementById('accessTime');
+        
+        // 页面加载时检查是否已经解锁
+        window.addEventListener('load', function() {
+            // 设置创建日期
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').textContent = now.toLocaleDateString('zh-CN', options);
+            
+            // 检查是否已经解锁
+            const isUnlocked = sessionStorage.getItem('loveLetterUnlocked');
+            const unlockTime = sessionStorage.getItem('unlockTime');
+            
+            if (isUnlocked === 'true' && unlockTime) {
+                // 计算解锁时长
+                const unlockDate = new Date(parseInt(unlockTime));
+                const now = new Date();
+                const diffMs = now - unlockDate;
+                const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+                const diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+                
+                accessTimeElement.textContent = `访问时间：${unlockDate.toLocaleTimeString()} (${diffHours}小时${diffMinutes}分钟前)`;
+                
+                // 直接显示内容
+                unlockContent();
+            } else {
+                // 显示密码层
+                passwordInput.focus();
+                updateAttemptsCounter();
+            }
+        });
+        
+        // 表单提交事件
+        passwordForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const enteredPassword = passwordInput.value.trim();
+            
+            if (enteredPassword === '') {
+                showError('请输入密码');
+                return;
+            }
+            
+            // 检查密码
+            if (enteredPassword === CORRECT_PASSWORD) {
+                // 密码正确
+                unlockContent();
+            } else {
+                // 密码错误
+                attempts++;
+                updateAttemptsCounter();
+                
+                const remainingAttempts = MAX_ATTEMPTS - attempts;
+                
+                if (remainingAttempts > 0) {
+                    showError(`密码错误，还有 ${remainingAttempts} 次尝试机会`);
+                } else {
+                    showError('尝试次数过多，请30分钟后再试');
+                    passwordInput.disabled = true;
+                    passwordForm.querySelector('button').disabled = true;
+                    
+                    // 30分钟后重置
+                    setTimeout(() => {
+                        attempts = 0;
+                        passwordInput.disabled = false;
+                        passwordForm.querySelector('button').disabled = false;
+                        updateAttemptsCounter();
+                        passwordInput.focus();
+                    }, 30 * 60 * 1000); // 30分钟
+                }
+                
+                // 清空输入框
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        });
+        
+        // 显示错误信息
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            
+            // 5秒后隐藏错误信息
+            setTimeout(() => {
+                errorMessage.classList.remove('show');
+            }, 5000);
         }
         
-        // 重新加载照片
-        function reloadPhotos() {
-            updateCarousel();
-            updateGallery();
-            alert('照片已重新加载！');
+        // 更新尝试次数显示
+        function updateAttemptsCounter() {
+            if (attempts > 0) {
+                const remaining = MAX_ATTEMPTS - attempts;
+                attemptsCounter.textContent = `已尝试 ${attempts} 次，剩余 ${remaining} 次机会`;
+            } else {
+                attemptsCounter.textContent = '';
+            }
         }
         
+        // 解锁内容
+        function unlockContent() {
+            // 保存解锁状态
+            const unlockTime = Date.now();
+            sessionStorage.setItem('loveLetterUnlocked', 'true');
+            sessionStorage.setItem('unlockTime', unlockTime.toString());
+            
+            // 显示访问时间
+            const unlockDate = new Date(unlockTime);
+            accessTimeElement.textContent = `访问时间：${unlockDate.toLocaleString()}`;
+            
+            // 隐藏密码层
+            passwordOverlay.style.opacity = '0';
+            
+            setTimeout(() => {
+                passwordOverlay.style.display = 'none';
+                
+                // 显示内容区域
+                contentArea.style.display = 'block';
+                
+                // 添加显示动画
+                setTimeout(() => {
+                    contentArea.classList.add('show');
+                    
+                    // 初始化照片功能
+                    initCarousel();
+                    initGallery();
+                }, 100);
+                
+            }, 800);
+        }
+        
+        // 锁定页面
+        function lockPage() {
+            if (confirm('确定要重新锁定页面吗？需要密码才能再次访问。')) {
+                // 清除解锁状态
+                sessionStorage.removeItem('loveLetterUnlocked');
+                sessionStorage.removeItem('unlockTime');
+                
+                // 隐藏内容区域
+                contentArea.classList.remove('show');
+                setTimeout(() => {
+                    contentArea.style.display = 'none';
+                    
+                    // 显示密码层
+                    passwordOverlay.style.display = 'flex';
+                    setTimeout(() => {
+                        passwordOverlay.style.opacity = '1';
+                        passwordInput.value = '';
+                        passwordInput.focus();
+                        
+                        // 重置尝试次数
+                        attempts = 0;
+                        updateAttemptsCounter();
+                    }, 50);
+                }, 500);
+            }
+        }
+        
+        // 修改密码（简单演示，实际应用中需要更安全的实现）
+        function changePassword() {
+            const currentPassword = prompt('请输入当前密码：');
+            
+            if (currentPassword === CORRECT_PASSWORD) {
+                const newPassword = prompt('请输入新密码（建议使用纪念日等有意义的数字）：');
+                const confirmPassword = prompt('请再次输入新密码：');
+                
+                if (newPassword && newPassword === confirmPassword) {
+                    // 在实际应用中，这里应该将新密码保存到服务器或加密存储
+                    // 这里只是演示，实际密码修改需要更安全的实现
+                    alert('密码修改功能需要后端支持。目前密码已硬编码在代码中。\n\n要修改密码，请编辑代码中的 CORRECT_PASSWORD 变量。');
+                } else if (newPassword !== confirmPassword) {
+                    alert('两次输入的密码不一致！');
+                }
+            } else if (currentPassword !== null) {
+                alert('当前密码错误！');
+            }
+        }
+        
+        // 回到上一页
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                alert('没有上一页可以返回');
+            }
+        }
+        
+        // 回到首页（假设首页为index.html，请根据实际情况修改）
+        function goHome() {
+            // 这里假设首页为index.html，如果您的首页不是这个，请修改下面的链接
+            window.location.href = 'index.html';
+        }
+        
+        // ================== 原有照片功能 ==================
         // 本地照片数据 - 修改这里的路径为您的照片路径
-        // 注意：照片需要放在与HTML文件相同的目录下，或者使用相对路径
         const localPhotos = [
             {
                 url: 'photo1.jpg', // 替换为您的照片文件名
@@ -769,14 +1370,14 @@
             img.src = url;
         }
         
-        // 轮播功能
+        // 轮播功能 - 已移除底部标题栏
         let currentSlide = 0;
         const carouselTrack = document.getElementById('carouselTrack');
         const carouselIndicators = document.getElementById('carouselIndicators');
         let autoCarouselInterval;
         
-        // 更新轮播
-        function updateCarousel() {
+        // 初始化轮播
+        function initCarousel() {
             // 清空轮播轨道和指示器
             carouselTrack.innerHTML = '';
             carouselIndicators.innerHTML = '';
@@ -789,14 +1390,14 @@
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #9a8c7a;">
                         <div style="font-size: 4em; margin-bottom: 20px;">📷</div>
                         <div style="font-size: 1.5em; margin-bottom: 10px;">暂无照片</div>
-                        <div>请按照上方说明添加您的照片</div>
+                        <div>请按照说明添加您的照片</div>
                     </div>
                 `;
                 carouselTrack.appendChild(slide);
                 return;
             }
             
-            // 创建轮播幻灯片
+            // 创建轮播幻灯片 - 已移除底部标题栏
             localPhotos.forEach((photo, index) => {
                 // 检查图片是否存在
                 checkImageExists(photo.url, function(exists) {
@@ -807,7 +1408,6 @@
                     if (exists) {
                         slide.innerHTML = `
                             <img src="${photo.url}" alt="${photo.caption}" class="carousel-image">
-                            <div class="carousel-caption">${photo.caption}</div>
                         `;
                     } else {
                         // 如果图片不存在，显示占位符
@@ -897,8 +1497,8 @@
         // 流动画廊功能
         const flowingGallery = document.getElementById('flowingGallery');
         
-        // 更新流动画廊
-        function updateGallery() {
+        // 初始化流动画廊
+        function initGallery() {
             // 清空画廊
             flowingGallery.innerHTML = '';
             
@@ -910,7 +1510,7 @@
                 galleryItem.innerHTML = `
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #9a8c7a;">
                         <div style="font-size: 3em; margin-bottom: 15px;">🖼️</div>
-                        <div style="text-align: center;">请按照上方说明添加您的照片</div>
+                        <div style="text-align: center;">请按照说明添加您的照片</div>
                     </div>
                 `;
                 flowingGallery.appendChild(galleryItem);
@@ -991,26 +1591,9 @@
             flowingGallery.style.animation = `scrollGallery ${duration} linear infinite`;
         }
         
-        // 页面加载动画
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('页面加载完成');
-            
-            const letter = document.querySelector('.mld-letter');
-            letter.style.opacity = '0';
-            letter.style.transform = 'translateY(40px) scale(0.98)';
-            
-            setTimeout(() => {
-                letter.style.transition = 'all 1s ease';
-                letter.style.opacity = '1';
-                letter.style.transform = 'translateY(0) scale(1)';
-            }, 300);
-            
-            // 初始化照片显示
-            updateCarousel();
-            updateGallery();
-            
-            // 鼠标悬停暂停轮播
-            const carouselContainer = document.querySelector('.carousel-container');
+        // 鼠标悬停暂停轮播
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (carouselContainer) {
             carouselContainer.addEventListener('mouseenter', () => {
                 clearInterval(autoCarouselInterval);
             });
@@ -1020,27 +1603,34 @@
                     startAutoCarousel();
                 }
             });
-        });
-        
-        // 示例：如果用户想要添加示例照片，可以使用这个函数
-        function addSamplePhotos() {
-            // 这里可以添加一些示例照片的URL
-            const samplePhotos = [
-                { url: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: '示例风景1' },
-                { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: '示例风景2' },
-                { url: 'https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', caption: '示例风景3' }
-            ];
-            
-            // 将示例照片添加到本地照片数组中
-            localPhotos.push(...samplePhotos);
-            updateCarousel();
-            updateGallery();
-            alert('已添加示例照片！请按照上方说明替换为您自己的照片。');
         }
         
-        // 为了让用户更容易测试，我们可以提供一个测试按钮
-        // 在实际使用中，您可能不需要这个
-        window.testWithSamplePhotos = addSamplePhotos;
+        // ================== 安全防护 ==================
+        // 防止右键查看源代码（基础防护）
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            showError('此页面内容受到保护');
+            return false;
+        });
+        
+        // 防止键盘快捷键查看源代码（基础防护）
+        document.addEventListener('keydown', function(e) {
+            // 禁用 F12、Ctrl+U、Ctrl+Shift+I 等
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.key === 'u') || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                e.preventDefault();
+                showError('此操作已被禁止');
+                return false;
+            }
+        });
+        
+        // 按Enter键提交密码
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                passwordForm.dispatchEvent(new Event('submit'));
+            }
+        });
     </script>
 </body>
 </html>

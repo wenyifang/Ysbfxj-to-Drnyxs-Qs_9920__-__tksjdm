@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>完整情书 - 给最爱的你</title>
+    <title>情书 | 上传我们的回忆</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,197 +13,1308 @@
         }
         
         body {
-            font-family: '楷体', 'Microsoft YaHei', serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f5f0eb 0%, #e8e2d9 50%, #f0ebe6 100%);
+            color: #7a8b99;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 30px 20px;
             line-height: 1.8;
-        }
-        
-        .letter-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
             position: relative;
-            border: 1px solid #ffebee;
+            overflow-x: hidden;
         }
         
-        .letter-container:before {
-            content: '';
+        body:before {
+            content: "";
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #a18cd1);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><path d="M60,30 C70,20 90,20 100,30 C110,40 110,60 100,70 C90,80 70,80 60,70 C50,80 30,80 20,70 C10,60 10,40 20,30 C30,20 50,20 60,30 Z" fill="%23a8b5c1" opacity="0.05"/></svg>');
+            background-size: 180px;
             z-index: -1;
-            border-radius: 30px;
-            opacity: 0.3;
+        }
+        
+        .mld-letter {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 55px;
+            border: 1px solid #d8d1c7;
+            box-shadow: 0 18px 45px rgba(168, 181, 193, 0.15);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .mld-letter:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #a8b5c1, #c4b6a6, #a8b5c1);
+            z-index: 1;
         }
         
         .letter-header {
             text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 2px dashed #ff9a9e;
-            padding-bottom: 20px;
+            margin-bottom: 45px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e8e2d9;
+            position: relative;
         }
         
         .letter-title {
-            color: #e84393;
-            font-size: 2.8em;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            color: #7a8b99;
+            font-size: 3em;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-weight: 300;
         }
         
-        .letter-date {
-            color: #888;
-            font-size: 1.1em;
-            margin-top: 10px;
+        .letter-subtitle {
+            color: #9a8c7a;
+            font-size: 1.3em;
+            margin-top: 15px;
+            font-weight: 300;
+        }
+        
+        .mld-stamp {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 130px;
+            height: 150px;
+            background: linear-gradient(45deg, #a8b5c1, #d1d9e1);
+            border-radius: 8px;
+            transform: rotate(-4deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #4a5a6a;
+            font-weight: 400;
+            padding: 12px;
+            box-shadow: 5px 5px 15px rgba(168, 181, 193, 0.2);
+            border: 1px solid #b8c5d1;
+            text-align: center;
+        }
+        
+        .stamp-text {
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+        
+        .mld-seal {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            width: 130px;
+            height: 130px;
+            border: 2px solid #c4b6a6;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #7a8b99;
+            font-weight: 400;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 20px rgba(196, 182, 166, 0.2);
         }
         
         .letter-content {
             font-size: 1.3em;
-            color: #333;
+            color: #7a8b99;
+            margin-bottom: 40px;
+            padding: 35px;
+            background: rgba(232, 226, 217, 0.2);
+            border-radius: 18px;
+            border: 1px solid #e8e2d9;
+            position: relative;
+        }
+        
+        .letter-content p {
+            margin-bottom: 20px;
             text-indent: 2em;
+        }
+        
+        /* 上传区域样式 */
+        .upload-section {
+            margin: 60px 0;
+            padding: 30px;
+            background: rgba(232, 226, 217, 0.2);
+            border-radius: 18px;
+            border: 2px dashed #c4b6a6;
+            text-align: center;
+        }
+        
+        .upload-title {
+            color: #7a8b99;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .upload-description {
+            color: #9a8c7a;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+        }
+        
+        .upload-area {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            border: 2px solid #d8d1c7;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-area:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: #a8b5c1;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(168, 181, 193, 0.2);
+        }
+        
+        .upload-icon {
+            font-size: 3.5em;
+            color: #a8b5c1;
+            margin-bottom: 15px;
+        }
+        
+        .upload-text {
+            color: #7a8b99;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .upload-hint {
+            color: #9a8c7a;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        /* 照片预览区 */
+        .preview-section {
+            margin: 40px 0;
+        }
+        
+        .preview-title {
+            text-align: center;
+            color: #7a8b99;
+            font-size: 1.8em;
             margin-bottom: 30px;
+            font-weight: 300;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .preview-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c4b6a6, transparent);
+        }
+        
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .preview-item {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #d8d1c7;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .preview-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(168, 181, 193, 0.2);
+        }
+        
+        .preview-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .preview-remove {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a8b99;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.2s ease;
+            border: 1px solid #d8d1c7;
+        }
+        
+        .preview-remove:hover {
+            background: rgba(255, 255, 255, 1);
+            color: #c8102e;
+            transform: scale(1.1);
+        }
+        
+        .preview-empty {
+            text-align: center;
+            color: #9a8c7a;
+            padding: 40px;
+            font-size: 1.1em;
+            background: rgba(232, 226, 217, 0.3);
+            border-radius: 12px;
+            border: 1px dashed #c4b6a6;
+        }
+        
+        /* 照片轮播区 */
+        .photo-carousel-section {
+            margin: 60px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: #7a8b99;
+            font-size: 1.8em;
+            margin-bottom: 35px;
+            font-weight: 300;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c4b6a6, transparent);
+        }
+        
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 16px;
+            background: rgba(232, 226, 217, 0.2);
+            border: 1px solid #e8e2d9;
+            box-shadow: 0 10px 30px rgba(168, 181, 193, 0.1);
+        }
+        
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.8s ease;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(120, 131, 153, 0.85);
+            color: #f5f0eb;
+            padding: 15px;
+            text-align: center;
+            font-size: 1em;
+            font-weight: 300;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            color: #7a8b99;
+            border: 1px solid #d8d1c7;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 15px rgba(168, 181, 193, 0.3);
+        }
+        
+        .carousel-prev {
+            left: 15px;
+        }
+        
+        .carousel-next {
+            right: 15px;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #d8d1c7;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-indicator.active {
+            background: rgba(168, 181, 193, 0.9);
+            transform: scale(1.2);
+        }
+        
+        /* 流动照片画廊 */
+        .flowing-gallery-section {
+            margin: 70px 0;
+        }
+        
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 16px;
+            background: rgba(232, 226, 217, 0.1);
+            border: 1px solid #e8e2d9;
+            margin-top: 30px;
+        }
+        
+        .flowing-gallery {
+            display: flex;
+            height: 100%;
+            animation: scrollGallery 40s linear infinite;
+        }
+        
+        .flowing-gallery:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scrollGallery {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .gallery-item {
+            height: 100%;
+            flex-shrink: 0;
+            padding: 10px;
+        }
+        
+        .gallery-image {
+            height: 100%;
+            width: auto;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.03);
+        }
+        
+        .gallery-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .gallery-btn {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #a8b5c1, #c5d0d9);
+            color: #4a5a6a;
+            border: 1px solid #b8c5d1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .gallery-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(168, 181, 193, 0.2);
+        }
+        
+        .btn-pause {
+            background: linear-gradient(45deg, #d8c4c4, #e5d6d6);
+            color: #7a6a6a;
+            border: 1px solid #d4c2c2;
+        }
+        
+        .mld-symbols {
+            text-align: center;
+            margin: 45px 0;
+            font-size: 2.5em;
+            letter-spacing: 15px;
+            color: #c4b6a6;
+            opacity: 0.7;
         }
         
         .letter-signature {
             text-align: right;
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #ff9a9e;
+            margin-top: 70px;
+            padding-top: 35px;
+            border-top: 1px solid #e8e2d9;
+            position: relative;
         }
         
         .signature-name {
-            font-size: 1.8em;
-            color: #e84393;
-            font-weight: bold;
-            margin-top: 10px;
+            font-size: 2.2em;
+            color: #7a8b99;
+            font-weight: 300;
+            margin-top: 20px;
+            font-family: 'Georgia', serif;
         }
         
-        .hearts {
-            text-align: center;
-            margin: 30px 0;
-            font-size: 2em;
-            animation: float 3s ease-in-out infinite;
+        .signature-title {
+            color: #9a8c7a;
+            font-size: 1.1em;
+            margin-top: 8px;
+            font-weight: 300;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .back-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 60px;
+            flex-wrap: wrap;
         }
         
-        .back-button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 25px;
-            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
-            color: white;
+        .back-btn {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #a8b5c1, #c5d0d9);
+            color: #4a5a6a;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
+            border-radius: 12px;
+            font-weight: 400;
+            border: 1px solid #b8c5d1;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(168, 181, 193, 0.15);
         }
         
-        .back-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        .back-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(168, 181, 193, 0.25);
         }
         
-        .envelope {
+        .btn-home {
+            background: linear-gradient(45deg, #d8c4c4, #e5d6d6);
+            color: #7a6a6a;
+            border: 1px solid #d4c2c2;
+        }
+        
+        .btn-print {
+            background: linear-gradient(45deg, #b8c9b8, #d1ddd1);
+            color: #5a6a5a;
+            border: 1px solid #c2d1c2;
+        }
+        
+        .mld-border {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2em;
-            animation: swing 2s ease-in-out infinite;
-        }
-        
-        @keyframes swing {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(5deg); }
-            75% { transform: rotate(-5deg); }
-        }
-        
-        .stamp {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 80px;
-            height: 100px;
-            background: linear-gradient(45deg, #e84393, #fd79a8);
-            border-radius: 10px;
-            transform: rotate(-10deg);
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: bold;
+            font-size: 1.2em;
+            color: #c4b6a6;
+            opacity: 0.6;
+        }
+        
+        .border-tl {
+            top: 25px;
+            left: 25px;
+        }
+        
+        .border-tr {
+            top: 25px;
+            right: 25px;
+        }
+        
+        .border-bl {
+            bottom: 25px;
+            left: 25px;
+        }
+        
+        .border-br {
+            bottom: 25px;
+            right: 25px;
+        }
+        
+        .letter-badge {
+            position: absolute;
+            bottom: -15px;
+            right: 60px;
+            background: rgba(168, 181, 193, 0.9);
+            color: #f5f0eb;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 300;
+            transform: rotate(-2deg);
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
             font-size: 0.9em;
-            padding: 5px;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mld-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d8d1c7, transparent);
+            margin: 40px 0;
+        }
+        
+        .highlight-quote {
+            text-align: center;
+            font-style: italic;
+            color: #9a8c7a;
+            margin: 40px 0;
+            padding: 25px;
+            background: rgba(232, 226, 217, 0.3);
+            border-radius: 12px;
+            border-left: 4px solid #c4b6a6;
+            border-right: 4px solid #c4b6a6;
+        }
+        
+        /* 提示信息 */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: rgba(120, 131, 153, 0.95);
+            color: #f5f0eb;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transform: translateX(120%);
+            transition: transform 0.4s ease;
+            max-width: 300px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification-success {
+            background: rgba(184, 201, 184, 0.95);
+            color: #5a6a5a;
+        }
+        
+        .notification-error {
+            background: rgba(216, 196, 196, 0.95);
+            color: #7a6a6a;
+        }
+        
+        @media (max-width: 768px) {
+            .mld-letter {
+                padding: 35px 25px;
+            }
+            
+            .letter-title {
+                font-size: 2.3em;
+            }
+            
+            .mld-stamp, .mld-seal {
+                position: relative;
+                top: 0;
+                left: 0;
+                right: 0;
+                margin: 25px auto;
+                transform: none;
+            }
+            
+            .carousel-container {
+                height: 250px;
+            }
+            
+            .gallery-container {
+                height: 200px;
+            }
+            
+            .preview-item {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .back-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .back-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+            
+            .mld-border {
+                width: 30px;
+                height: 30px;
+                font-size: 1em;
+            }
+            
+            .gallery-controls {
+                flex-wrap: wrap;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="letter-container">
-        <div class="stamp">LOVE<br>邮票</div>
-        <div class="envelope">💌</div>
+    <!-- 通知提示 -->
+    <div id="notification" class="notification">
+        <div id="notification-text">上传成功！</div>
+    </div>
+    
+    <div class="mld-letter">
+        <div class="mld-border border-tl">◈</div>
+        <div class="mld-border border-tr">✦</div>
+        
+        <div class="mld-stamp">
+            <div class="stamp-text">
+                回忆<br>✦ 专 属 ✦<br>我们的故事
+            </div>
+        </div>
+        
+        <div class="mld-seal">
+            <div>私密</div>
+            <div style="margin: 8px 0; font-size: 1.5em;">📸</div>
+            <div>相册</div>
+        </div>
         
         <div class="letter-header">
-            <h1 class="letter-title">给最爱的你</h1>
-            <div class="letter-date">❤️ 永远爱你的日子 ❤️</div>
+            <h1 class="letter-title">📸 上传回忆 ✨</h1>
+            <div class="letter-subtitle">上传我们的照片，让回忆在时光中流动</div>
+            <div style="margin-top: 15px; color: #a8b5c1; font-size: 0.95em;">✦ 编号：Y&W-2025-1212 ✦</div>
         </div>
         
-        <div class="hearts">❤️ ❤️ ❤️</div>
+        <div class="mld-symbols">✦ ❁ ✦</div>
         
         <div class="letter-content">
-            <p>我亲爱的宝贝：</p>
-            <p>提笔写这封信的时候，我的心中充满了无限的温柔与感激。遇见你，是我生命中最美丽的意外；爱上你，是我做过最正确的决定。</p>
-            <p>还记得我们第一次相遇的那个午后吗？阳光洒在你的身上，你微微一笑，那一刻，时间仿佛静止了。从那天起，我的世界因为你的出现而变得五彩斑斓。</p>
-            <p>每一天，我都想告诉你：</p>
-            <p>我喜欢你清晨睡眼朦胧的样子，喜欢你专注工作时认真的神情，喜欢你吃到美食时满足的笑容，喜欢你所有的小习惯和小脾气。</p>
-            <p>你就像春天里最温暖的风，夏天里最清凉的雨，秋天里最绚烂的枫叶，冬天里最纯净的雪花。有了你，四季都变得如此美好。</p>
-            <p>我想要和你一起看遍世间风景，尝遍天下美食。想要在每一个清晨醒来时第一眼看到的就是你，在每一个夜晚入睡前最后一个道晚安的人也是你。</p>
-            <p>未来的路还很长，可能会有风雨，可能会有坎坷，但只要我们牵着彼此的手，就没有什么可以阻挡我们前进的脚步。</p>
-            <p>请相信，我会一直在这里，爱你、宠你、守护你。你的快乐是我的快乐，你的悲伤是我的悲伤。我愿意用我的一生，去证明我对你的爱。</p>
+            <p>亲爱的：</p>
+            <p>我想用流动的照片，记录我们共同走过的时光。每张照片都是一个故事，每个瞬间都值得珍藏。</p>
+            <p>现在，你可以上传我们共同的回忆，让这些珍贵的瞬间在这里流动、轮播，成为我们爱的见证。</p>
+            <p>上传的照片会显示在下面的预览区，并自动添加到轮播和流动画廊中。</p>
+            
+            <div class="mld-divider"></div>
+            
+            <div class="highlight-quote">
+                "最好的爱情，是创造无数值得珍藏的瞬间。"
+            </div>
+            
+            <div class="mld-divider"></div>
+            
+            <p>上传完成后，你可以：</p>
+            <ul style="padding-left: 2em; margin-top: 15px;">
+                <li>在预览区查看所有上传的照片</li>
+                <li>点击照片从预览区删除</li>
+                <li>照片会自动添加到轮播和流动画廊</li>
+                <li>可以控制流动画廊的速度和暂停</li>
+            </ul>
         </div>
         
-        <div class="hearts">💖 💖 💖</div>
+        <!-- 上传区域 -->
+        <div class="upload-section">
+            <h2 class="upload-title">✦ 上传我们的照片 ✦</h2>
+            <p class="upload-description">点击下方区域选择照片，支持多选</p>
+            
+            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <div class="upload-icon">📤</div>
+                <div class="upload-text">点击上传照片</div>
+                <div class="upload-hint">支持 JPG, PNG 格式，每张不超过 5MB</div>
+            </div>
+            
+            <input type="file" id="fileInput" accept="image/*" multiple>
+            
+            <div class="upload-hint" style="margin-top: 20px;">
+                提示：建议上传尺寸相近的照片以获得最佳显示效果
+            </div>
+        </div>
+        
+        <!-- 照片预览区 -->
+        <div class="preview-section">
+            <h2 class="preview-title">✦ 照片预览 ✦</h2>
+            <div id="previewContainer" class="preview-container">
+                <div class="preview-empty" id="emptyPreview">
+                    <div style="font-size: 3em; margin-bottom: 15px;">📷</div>
+                    <p>还没有上传照片</p>
+                    <p style="font-size: 0.9em; margin-top: 10px;">上传的照片会显示在这里</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 照片轮播区 -->
+        <div class="photo-carousel-section">
+            <h2 class="section-title">✦ 回忆轮播 ✦</h2>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- 轮播幻灯片将通过JS动态添加 -->
+                </div>
+                <div class="carousel-nav carousel-prev" onclick="prevSlide()">❮</div>
+                <div class="carousel-nav carousel-next" onclick="nextSlide()">❯</div>
+                <div class="carousel-indicators" id="carouselIndicators">
+                    <!-- 指示器将通过JS动态添加 -->
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 15px; color: #9a8c7a; font-size: 0.9em;">
+                轮播将自动播放，鼠标悬停在轮播区可暂停
+            </div>
+        </div>
+        
+        <div class="mld-divider"></div>
+        
+        <!-- 流动照片画廊 -->
+        <div class="flowing-gallery-section">
+            <h2 class="section-title">✦ 时光流动画廊 ✦</h2>
+            <div class="gallery-container">
+                <div class="flowing-gallery" id="flowingGallery">
+                    <!-- 流动画廊图片将通过JS动态添加 -->
+                </div>
+            </div>
+            <div class="gallery-controls">
+                <button class="gallery-btn" onclick="pauseGallery()"><i class="fas fa-pause"></i> 暂停流动</button>
+                <button class="gallery-btn btn-pause" onclick="resumeGallery()"><i class="fas fa-play"></i> 继续流动</button>
+                <button class="gallery-btn" onclick="changeGallerySpeed('slow')"><i class="fas fa-tachometer-alt"></i> 慢速</button>
+                <button class="gallery-btn" onclick="changeGallerySpeed('normal')"><i class="fas fa-tachometer-alt"></i> 正常</button>
+                <button class="gallery-btn" onclick="changeGallerySpeed('fast')"><i class="fas fa-tachometer-alt"></i> 快速</button>
+            </div>
+        </div>
+        
+        <div class="mld-symbols">◈ ✦ ◈</div>
         
         <div class="letter-signature">
-            <p>永远爱你的，</p>
+            <p>愿这些流动的瞬间，</p>
+            <p>成为我们永不褪色的记忆。</p>
             <div class="signature-name">你的宝宝</div>
-            <div style="color: #888; margin-top: 5px;">2025年12月12日</div>
+            <div class="signature-title">珍藏时光的人</div>
+            <div style="color: #a8b5c1; margin-top: 15px;">日期：<span id="current-date"></span></div>
         </div>
         
-        <div style="text-align: center;">
-            <a href="javascript:history.back()" class="back-button">← 返回上一页</a>
-            <a href="index.html" class="back-button" style="margin-left: 15px; background: linear-gradient(45deg, #00b894, #55efc4);">🏠 回到首页</a>
+        <div class="letter-badge">✦ 独家记忆 ✦</div>
+        
+        <div class="back-buttons">
+            <a href="javascript:history.back()" class="back-btn">
+                ◀ 返回上一页
+            </a>
+            <a href="index.html" class="back-btn btn-home">
+                🏠 回到首页
+            </a>
+            <button onclick="printLetter()" class="back-btn btn-print">
+                🖨️ 打印信件
+            </button>
+            <button onclick="clearAllPhotos()" class="back-btn" style="background: linear-gradient(45deg, #d8c4c4, #e5d6d6); color: #7a6a6a;">
+                🗑️ 清空照片
+            </button>
         </div>
+        
+        <div class="mld-border border-bl">◉</div>
+        <div class="mld-border border-br">◎</div>
     </div>
 
     <script>
         // 设置当前日期
         const now = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.querySelector('.letter-date').textContent = 
-            `📅 ${now.toLocaleDateString('zh-CN', options)} ❤️`;
+        const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+        document.getElementById('current-date').textContent = now.toLocaleDateString('zh-CN', options);
         
-        // 添加页面进入动画
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('.letter-container').style.opacity = '0';
-            document.querySelector('.letter-container').style.transform = 'translateY(50px)';
+        // 打印功能
+        function printLetter() {
+            window.print();
+        }
+        
+        // 显示通知
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notification-text');
+            
+            notificationText.textContent = message;
+            notification.className = 'notification';
+            notification.classList.add('show');
+            
+            if (type === 'success') {
+                notification.classList.add('notification-success');
+            } else if (type === 'error') {
+                notification.classList.add('notification-error');
+            }
             
             setTimeout(() => {
-                document.querySelector('.letter-container').style.transition = 'all 1s ease';
-                document.querySelector('.letter-container').style.opacity = '1';
-                document.querySelector('.letter-container').style.transform = 'translateY(0)';
-            }, 200);
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // 照片数据存储
+        let uploadedPhotos = [];
+        const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+        
+        // 文件上传处理
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const files = e.target.files;
+            let validFilesCount = 0;
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                
+                // 检查文件类型
+                if (!file.type.match('image.*')) {
+                    showNotification(`文件 "${file.name}" 不是图片格式`, 'error');
+                    continue;
+                }
+                
+                // 检查文件大小
+                if (file.size > MAX_FILE_SIZE) {
+                    showNotification(`文件 "${file.name}" 超过5MB限制`, 'error');
+                    continue;
+                }
+                
+                // 使用FileReader读取文件
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    const photoData = {
+                        id: Date.now() + i,
+                        name: file.name,
+                        url: event.target.result,
+                        caption: file.name.split('.')[0] // 使用文件名作为标题
+                    };
+                    
+                    uploadedPhotos.push(photoData);
+                    validFilesCount++;
+                    
+                    // 如果这是最后一个文件，更新显示
+                    if (validFilesCount === files.length) {
+                        updatePreview();
+                        updateCarousel();
+                        updateGallery();
+                        
+                        if (validFilesCount > 0) {
+                            showNotification(`成功上传 ${validFilesCount} 张照片`, 'success');
+                        }
+                    }
+                };
+                
+                reader.onerror = function() {
+                    showNotification(`读取文件 "${file.name}" 失败`, 'error');
+                };
+                
+                reader.readAsDataURL(file);
+            }
+            
+            // 清空文件输入，以便可以再次选择相同文件
+            e.target.value = '';
         });
+        
+        // 更新预览区
+        function updatePreview() {
+            const previewContainer = document.getElementById('previewContainer');
+            const emptyPreview = document.getElementById('emptyPreview');
+            
+            // 清空预览区
+            previewContainer.innerHTML = '';
+            
+            if (uploadedPhotos.length === 0) {
+                // 显示空状态
+                previewContainer.appendChild(emptyPreview);
+                emptyPreview.style.display = 'block';
+                return;
+            }
+            
+            // 隐藏空状态
+            emptyPreview.style.display = 'none';
+            
+            // 添加照片预览
+            uploadedPhotos.forEach((photo, index) => {
+                const previewItem = document.createElement('div');
+                previewItem.className = 'preview-item';
+                
+                const img = document.createElement('img');
+                img.src = photo.url;
+                img.alt = photo.caption;
+                img.className = 'preview-image';
+                
+                const removeBtn = document.createElement('div');
+                removeBtn.className = 'preview-remove';
+                removeBtn.innerHTML = '×';
+                removeBtn.title = '删除这张照片';
+                removeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    removePhoto(photo.id);
+                });
+                
+                previewItem.appendChild(img);
+                previewItem.appendChild(removeBtn);
+                previewContainer.appendChild(previewItem);
+            });
+        }
+        
+        // 删除照片
+        function removePhoto(id) {
+            uploadedPhotos = uploadedPhotos.filter(photo => photo.id !== id);
+            updatePreview();
+            updateCarousel();
+            updateGallery();
+            showNotification('照片已删除', 'success');
+        }
+        
+        // 清空所有照片
+        function clearAllPhotos() {
+            if (uploadedPhotos.length === 0) {
+                showNotification('当前没有照片可以清空', 'info');
+                return;
+            }
+            
+            if (confirm('确定要清空所有照片吗？此操作不可恢复。')) {
+                uploadedPhotos = [];
+                updatePreview();
+                updateCarousel();
+                updateGallery();
+                showNotification('所有照片已清空', 'success');
+            }
+        }
+        
+        // 轮播功能
+        let currentSlide = 0;
+        const carouselTrack = document.getElementById('carouselTrack');
+        const carouselIndicators = document.getElementById('carouselIndicators');
+        let autoCarouselInterval;
+        
+        // 更新轮播
+        function updateCarousel() {
+            // 清空轮播轨道和指示器
+            carouselTrack.innerHTML = '';
+            carouselIndicators.innerHTML = '';
+            
+            if (uploadedPhotos.length === 0) {
+                // 显示默认状态
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #9a8c7a;">
+                        <div style="font-size: 4em; margin-bottom: 20px;">📷</div>
+                        <div style="font-size: 1.5em; margin-bottom: 10px;">暂无照片</div>
+                        <div>请先上传照片，它们会显示在这里</div>
+                    </div>
+                `;
+                carouselTrack.appendChild(slide);
+                return;
+            }
+            
+            // 创建轮播幻灯片
+            uploadedPhotos.forEach((photo, index) => {
+                // 创建幻灯片
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.innerHTML = `
+                    <img src="${photo.url}" alt="${photo.caption}" class="carousel-image">
+                    <div class="carousel-caption">${photo.caption}</div>
+                `;
+                carouselTrack.appendChild(slide);
+                
+                // 创建指示器
+                const indicator = document.createElement('div');
+                indicator.className = 'carousel-indicator';
+                if (index === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', () => goToSlide(index));
+                carouselIndicators.appendChild(indicator);
+            });
+            
+            // 重置当前幻灯片索引
+            currentSlide = 0;
+            
+            // 开始自动轮播
+            startAutoCarousel();
+        }
+        
+        // 开始自动轮播
+        function startAutoCarousel() {
+            clearInterval(autoCarouselInterval);
+            
+            if (uploadedPhotos.length <= 1) return;
+            
+            autoCarouselInterval = setInterval(() => {
+                nextSlide();
+            }, 5000); // 每5秒切换一次
+        }
+        
+        // 切换到下一张
+        function nextSlide() {
+            if (uploadedPhotos.length === 0) return;
+            
+            currentSlide = (currentSlide + 1) % uploadedPhotos.length;
+            updateCarouselDisplay();
+        }
+        
+        // 切换到上一张
+        function prevSlide() {
+            if (uploadedPhotos.length === 0) return;
+            
+            currentSlide = (currentSlide - 1 + uploadedPhotos.length) % uploadedPhotos.length;
+            updateCarouselDisplay();
+        }
+        
+        // 跳转到指定幻灯片
+        function goToSlide(index) {
+            if (uploadedPhotos.length === 0) return;
+            
+            currentSlide = index;
+            updateCarouselDisplay();
+        }
+        
+        // 更新轮播显示
+        function updateCarouselDisplay() {
+            const trackWidth = carouselTrack.clientWidth;
+            carouselTrack.style.transform = `translateX(-${currentSlide * trackWidth}px)`;
+            
+            // 更新指示器
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            indicators.forEach((indicator, index) => {
+                if (index === currentSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+            
+            // 重置自动轮播计时器
+            clearInterval(autoCarouselInterval);
+            startAutoCarousel();
+        }
+        
+        // 流动画廊功能
+        const flowingGallery = document.getElementById('flowingGallery');
+        
+        // 更新流动画廊
+        function updateGallery() {
+            // 清空画廊
+            flowingGallery.innerHTML = '';
+            
+            if (uploadedPhotos.length === 0) {
+                // 显示默认状态
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.style.padding = '40px';
+                galleryItem.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #9a8c7a;">
+                        <div style="font-size: 3em; margin-bottom: 15px;">🖼️</div>
+                        <div style="text-align: center;">上传照片后，它们会在这里流动显示</div>
+                    </div>
+                `;
+                flowingGallery.appendChild(galleryItem);
+                flowingGallery.style.animation = 'none';
+                return;
+            }
+            
+            // 复制照片数据以创建无缝滚动效果
+            const duplicatedPhotos = [...uploadedPhotos, ...uploadedPhotos];
+            
+            // 创建画廊项目
+            duplicatedPhotos.forEach((photo, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = photo.url;
+                img.alt = photo.caption;
+                img.className = 'gallery-image';
+                
+                galleryItem.appendChild(img);
+                flowingGallery.appendChild(galleryItem);
+            });
+            
+            // 设置动画
+            flowingGallery.style.animation = 'scrollGallery 40s linear infinite';
+        }
+        
+        // 暂停画廊流动
+        function pauseGallery() {
+            if (uploadedPhotos.length === 0) {
+                showNotification('没有照片可以暂停', 'info');
+                return;
+            }
+            flowingGallery.style.animationPlayState = 'paused';
+            showNotification('画廊已暂停', 'success');
+        }
+        
+        // 继续画廊流动
+        function resumeGallery() {
+            if (uploadedPhotos.length === 0) {
+                showNotification('没有照片可以恢复', 'info');
+                return;
+            }
+            flowingGallery.style.animationPlayState = 'running';
+            showNotification('画廊继续流动', 'success');
+        }
+        
+        // 改变画廊流动速度
+        function changeGallerySpeed(speed) {
+            if (uploadedPhotos.length === 0) {
+                showNotification('请先上传照片', 'info');
+                return;
+            }
+            
+            let duration;
+            switch(speed) {
+                case 'slow':
+                    duration = '60s';
+                    break;
+                case 'fast':
+                    duration = '20s';
+                    break;
+                default:
+                    duration = '40s';
+            }
+            flowingGallery.style.animation = `scrollGallery ${duration} linear infinite`;
+            showNotification(`已调整为${speed === 'slow' ? '慢速' : speed === 'fast' ? '快速' : '正常'}流动`, 'success');
+        }
+        
+        // 页面加载动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const letter = document.querySelector('.mld-letter');
+            letter.style.opacity = '0';
+            letter.style.transform = 'translateY(40px) scale(0.98)';
+            
+            setTimeout(() => {
+                letter.style.transition = 'all 1s ease';
+                letter.style.opacity = '1';
+                letter.style.transform = 'translateY(0) scale(1)';
+            }, 300);
+            
+            // 初始化照片显示
+            updatePreview();
+            updateCarousel();
+            updateGallery();
+            
+            // 创建漂浮元素
+            createFloatingElements();
+            
+            // 鼠标悬停暂停轮播
+            const carouselContainer = document.querySelector('.carousel-container');
+            carouselContainer.addEventListener('mouseenter', () => {
+                clearInterval(autoCarouselInterval);
+            });
+            
+            carouselContainer.addEventListener('mouseleave', () => {
+                if (uploadedPhotos.length > 1) {
+                    startAutoCarousel();
+                }
+            });
+        });
+        
+        // 创建漂浮的装饰元素
+        function createFloatingElements() {
+            const elements = ['❁', '✦', '✧', '◈', '◉', '◎', '✿', '❀'];
+            const container = document.body;
+            
+            for (let i = 0; i < 8; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+                
+                // 随机位置
+                const left = Math.random() * 90 + 5;
+                const top = Math.random() * 90 + 5;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 8 + 12;
+                
+                element.style.position = 'absolute';
+                element.style.left = `${left}%`;
+                element.style.top = `${top}%`;
+                element.style.fontSize = `${Math.random() * 1.2 + 0.8}em`;
+                element.style.opacity = Math.random() * 0.3 + 0.2;
+                element.style.zIndex = '-1';
+                element.style.animation = `gentleFloat ${duration}s ease-in-out infinite`;
+                element.style.animationDelay = `${delay}s`;
+                
+                // 添加浮动动画样式
+                if (!document.querySelector('#float-animation')) {
+                    const style = document.createElement('style');
+                    style.id = 'float-animation';
+                    style.textContent = `
+                        @keyframes gentleFloat {
+                            0%, 100% { transform: translateY(0) rotate(0deg); }
+                            50% { transform: translateY(-20px) rotate(5deg); }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+                
+                container.appendChild(element);
+            }
+        }
     </script>
 </body>
 </html>

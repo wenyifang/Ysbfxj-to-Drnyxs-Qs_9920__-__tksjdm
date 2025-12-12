@@ -79,6 +79,19 @@
             gap: 30px;
         }
 
+  .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+   .footer {
+            margin-top: 30px;
+            color: #888;
+            font-size: 0.9em;
+        }
+
         /* 情话内容 */
         .love-message {
             background-color: white;
@@ -227,6 +240,40 @@ box-shadow: 0 0 10px rgba(0,0,0,0.3);
     <source src="Tiffany Alvord - Baby I Love You.mp3" type="audio/mpeg">
     Your browser does not support the video element.
 </audio >
+
+ <div class="button-container">
+            <!-- 新标签页打开 -->
+            <a href="love-letter.html" target="_blank" class="btn btn-new-tab">
+                ✨ 下一篇这在里嘿嘿~
+            </a>
+            
+       
+        </div>
+        
+        <div class="footer">
+            
+            <p>❤️ 用心制作，献给最爱的你 ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        // 新窗口打开情书页面
+        function openLoveLetterWindow() {
+            const features = 'width=800,height=600,scrollbars=yes,resizable=yes';
+            window.open('love-letter.html', 'loveLetterWindow', features);
+        }
+        
+        // 添加一些动画效果
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

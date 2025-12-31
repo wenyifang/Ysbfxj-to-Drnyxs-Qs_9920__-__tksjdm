@@ -458,7 +458,7 @@ background: #F5ECE0;
         }
         
         .stamp-text {
-            font-size: 0.82em;
+            font-size: 0.85em;
             line-height: 1.4;
         }
         
@@ -562,7 +562,7 @@ background: #F5ECE0;
         .carousel-container {
             position: relative;
             width: 100%;
-            height: 400px; /* 增加了高度，因为移除了底部标题栏 */
+            height: 500px; /* 增加高度以更好展示图片 */
             overflow: hidden;
             border-radius: 16px;
             background: rgba(232, 226, 217, 0.2);
@@ -588,9 +588,10 @@ background: #F5ECE0;
         .carousel-image {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* 改为contain确保完整显示图片 */
             border-radius: 12px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.1); /* 添加背景色以防透明图片 */
         }
         
         /* 移除了.carousel-caption样式 */
@@ -657,7 +658,7 @@ background: #F5ECE0;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
         }
         
-        /* 流动照片画廊 */
+        /* 流动照片画廊 - 完全重新设计 */
         .flowing-gallery-section {
             margin: 70px 0;
         }
@@ -665,7 +666,7 @@ background: #F5ECE0;
         .gallery-container {
             position: relative;
             width: 100%;
-            height: 280px;
+            height: 300px; /* 增加高度 */
             overflow: hidden;
             border-radius: 16px;
             background: rgba(232, 226, 217, 0.1);
@@ -673,22 +674,25 @@ background: #F5ECE0;
             margin-top: 30px;
         }
         
-        .flowing-gallery {
+        /* 新的流动画廊容器 */
+        .flowing-gallery-wrapper {
             display: flex;
+            width: max-content;
             height: 100%;
-            animation: scrollGallery 20s linear infinite;
+            animation: scrollGallery 15s linear infinite;
         }
         
-        .flowing-gallery:hover {
+        .flowing-gallery-wrapper:hover {
             animation-play-state: paused;
         }
         
+        /* 新的关键帧动画 */
         @keyframes scrollGallery {
             0% {
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(-50%);
+                transform: translateX(-50%); /* 移动一半距离，因为我们有两组照片 */
             }
         }
         
@@ -696,11 +700,14 @@ background: #F5ECE0;
             height: 100%;
             flex-shrink: 0;
             padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .gallery-image {
             height: 100%;
-            width: auto;
+            width: 300px; /* 固定宽度，确保每张图片宽度一致 */
             border-radius: 10px;
             object-fit: cover;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -708,7 +715,7 @@ background: #F5ECE0;
         }
         
         .gallery-item:hover .gallery-image {
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
         
         .gallery-controls {
@@ -716,6 +723,7 @@ background: #F5ECE0;
             justify-content: center;
             gap: 15px;
             margin-top: 25px;
+            flex-wrap: wrap;
         }
         
         .gallery-btn {
@@ -1036,7 +1044,7 @@ background: #F5ECE0;
             }
             
             .carousel-container {
-                height: 250px;
+                height: 300px; /* 手机端也增加高度 */
                 border-radius: 12px;
             }
             
@@ -1055,8 +1063,12 @@ background: #F5ECE0;
             }
             
             .gallery-container {
-                height: 180px;
+                height: 200px;
                 border-radius: 12px;
+            }
+            
+            .gallery-image {
+                width: 200px; /* 手机端减小图片宽度 */
             }
             
             .gallery-controls {
@@ -1156,11 +1168,15 @@ background: #F5ECE0;
             }
             
             .carousel-container {
-                height: 200px;
+                height: 220px;
             }
             
             .gallery-container {
-                height: 150px;
+                height: 160px;
+            }
+            
+            .gallery-image {
+                width: 150px; /* 更小屏幕进一步减小图片宽度 */
             }
         }
         
@@ -1293,7 +1309,7 @@ background: #F5ECE0;
                 <p>军恋的日子，好像总在等待中度过。没有朝夕相伴的温柔，没有随叫随到的依靠，更多的时候，是隔着山海的牵挂，是消息晚回的落寞，是别人团聚时的孤单。可我从来没后悔过选择你，也没怪过这份感情里的不容易。我懂你身为军人的使命，懂你"舍小家为大家"的坚守，也懂你每次视频时，眼底藏着的对我的亏欠与牵挂。（这句听起很假对不对，哈哈哈哈，那是我抄的，其实我的格局里只有你~~///(^v^)\\\~~）</p>
                 <p>很多时候，我也会偷偷难过，觉得自己好可怜，30年感觉自己永远都是一个人。我每次都说你对我不好，可能是越来越爱你，对你的需求越来越高，总是期望我喊痛的时候你能放下手头上的事来关心我，在一起就时时粘我身上，不管去哪都牵我的手，能体贴到所有，能对我满怀亏欠，能让我感受到你爱我。但你自从结了婚就不恋爱脑了，哼！让我感动的事情屈指可数。可即便如此，我还是很喜欢你，说不清原因，不只是被爱，爱你也是很幸福的事情。这份双向的奔赴，才能让所有思念都有了着落，让所有的等待都有了意义。</p>
                 <p>我想要的从来不是轰轰烈烈的浪漫，而是平安顺遂的日常。只要知道你一切安好，只要能偶尔收到你的消息，只要休假的时候能给我极致的温柔，只要一想到我们的未来，所有的孤单和辛苦都变得值得。我喜欢看你穿着军装的挺拔身姿，喜欢每次重逢时你的拥抱——这些，都是支撑我走下去的力量。</p>
-               <p>亲爱的寿星佬，生日这天我没啥华丽的祝福，只有最实在的期盼：愿你别总硬扛着疲惫，累了就好好歇一歇；愿你往后的一天，都能被温柔以待，少点烦心琐事，多点舒心时光；愿我们之间的爱意，能在岁岁年年里，愈发醇厚绵长。对我来说，你从不是什么遥不可及的英雄，只是我想一辈子捧在手心的宝贝。天气转凉了，记得多添衣物，训练时一定要注意安全，别太劳累。照顾好自己，就是对我最好的承诺。我在这边超乖的，按时吃饭不熬夜，听你的话，不让你分心，乖乖等你休假，等你回来。收到我给你的超惊喜礼物了吧，为了你的礼物，我琢磨好久呢，好怕买的你用不上，想旁敲侧击的问你想要啥，但又怕少了惊喜，总之你要记得那满载着你老婆的浓浓爱意。往后的日子，我继续做你最靠谱的后盾，你往前走，我就稳稳跟在你身后，我们一起把剩下的岁岁年年，都过成甜甜的模样。</p>
+               <p>亲爱的寿星佬，生日这天我没啥华丽的祝福，只有最实在的期盼：愿你别总硬扛着疲惫，累了就好好歇一歇；愿你往后的一天，都能被温柔以待，少点烦心琐事，多点舒心时光；愿我们之间的爱意，能在岁岁年年里，愈发醇厚绵长。对我来说，你从不是什么遥不可及的英雄，只是我想一辈子捧在手心的宝贝。天气转凉了，记得多添衣物，训练时一定要注意安全，别太劳累。照顾好自己，就是对我最好的承诺。我在这边超乖的，按时吃饭不熬夜，听你的话，不让你分心，乖乖等你休假，等你回来。收到你亲亲老婆送给你超惊喜的礼物了嘛，为了你的礼物，我琢磨好久呢，好怕买的你用不上，想旁敲侧击的问你想要啥，但又怕少了惊喜，总之这里面满载着你老婆浓浓的爱意哦。往后的日子，我继续做你最靠谱的后盾，你往前走，我就稳稳跟在你身后，我们一起把剩下的岁岁年年，都过成甜甜的模样。</p>
                <p>我最爱的人，山河辽阔，岁月漫长，只要我们心在一起，再远的距离也不算什么。愿我们每次都能平安重逢，愿我们的等待都能换来圆满，愿我们的爱情细水长流，岁岁皆安。我会一直在这里，等你回家，等我们的朝朝暮暮。</p>
                 <div class="mld-divider"></div>
                 
@@ -1341,7 +1357,7 @@ background: #F5ECE0;
             <div class="flowing-gallery-section">
                 <h2 class="section-title">✦ 时光流动画廊 ✦</h2>
                 <div class="gallery-container">
-                    <div class="flowing-gallery" id="flowingGallery">
+                    <div class="flowing-gallery-wrapper" id="flowingGallery">
                         <!-- 流动画廊图片将通过JS动态添加 -->
                     </div>
                 </div>
@@ -1673,8 +1689,8 @@ background: #F5ECE0;
             window.location.href = 'index.html';
         }
         
-        // ================== 原有照片功能 ==================
-        // 本地照片数据 - 修改这里的路径为您的照片路径
+        // ================== 照片功能 - 重新设计 ==================
+        // 本地照片数据 - 修改这里的路径为您的照片路径（共14张）
         const localPhotos = [
             {
                 url: 'pict/photo1.jpg', // 替换为您的照片文件名
@@ -1695,36 +1711,43 @@ background: #F5ECE0;
             {
                 url: 'pict/photo5.jpg', // 替换为您的照片文件名
                 caption: '美好的回忆5'
-            }, {
+            },
+            {
                 url: 'pict/photo6.jpg', // 替换为您的照片文件名
-                caption: '美好的回忆1'
+                caption: '美好的回忆6'
             },
             {
                 url: 'pict/photo7.jpg', // 替换为您的照片文件名
-                caption: '美好的回忆2'
+                caption: '美好的回忆7'
             },
             {
                 url: 'pict/photo8.jpg', // 替换为您的照片文件名
-                caption: '美好的回忆3'
+                caption: '美好的回忆8'
             },
             {
                 url: 'pict/photo9.jpg', // 替换为您的照片文件名
-                caption: '美好的回忆4'
+                caption: '美好的回忆9'
             },
             {
                 url: 'pict/photo10.jpg', // 替换为您的照片文件名
-                caption: '美好的回忆5'
+                caption: '美好的回忆10'
             },
             {
                 url: 'pict/photo11.jpg', // 替换为您的照片文件名
-                caption: '美好的回忆4'
+                caption: '美好的回忆11'
             },
             {
                 url: 'pict/photo12.jpg', // 替换为您的照片文件名
-                caption: '美好的回忆5'
+                caption: '美好的回忆12'
+            },
+            {
+                url: 'pict/photo13.jpg', // 替换为您的照片文件名
+                caption: '美好的回忆13'
+            },
+            {
+                url: 'pict/photo14.jpg', // 替换为您的照片文件名
+                caption: '美好的回忆14'
             }
-
-
         ];
         
         // 如果照片不存在，显示默认的占位图片
@@ -1816,7 +1839,7 @@ background: #F5ECE0;
             
             autoCarouselInterval = setInterval(() => {
                 nextSlide();
-            }, 5000); // 每5秒切换一次
+            }, 4000); // 每4秒切换一次
         }
         
         // 切换到下一张
@@ -1863,7 +1886,7 @@ background: #F5ECE0;
             startAutoCarousel();
         }
         
-        // 流动画廊功能
+        // 流动画廊功能 - 完全重新设计
         const flowingGallery = document.getElementById('flowingGallery');
         
         // 初始化流动画廊
@@ -1887,38 +1910,49 @@ background: #F5ECE0;
                 return;
             }
             
-            // 复制照片数据以创建无缝滚动效果
-            const duplicatedPhotos = [...localPhotos, ...localPhotos];
-            
-            // 创建画廊项目
-            duplicatedPhotos.forEach((photo, index) => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                
-                // 检查图片是否存在
-                checkImageExists(photo.url, function(exists) {
-                    if (exists) {
-                        const img = document.createElement('img');
-                        img.src = photo.url;
-                        img.alt = photo.caption;
-                        img.className = 'gallery-image';
-                        galleryItem.appendChild(img);
-                    } else {
-                        // 如果图片不存在，显示占位符
-                        galleryItem.innerHTML = `
-                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 200px; color: #9a8c7a; background: rgba(232, 226, 217, 0.3); border-radius: 10px; padding: 10px;">
-                                <div style="font-size: 2em; margin-bottom: 10px;">❌</div>
-                                <div style="text-align: center; font-size: 0.9em;">图片未找到</div>
-                            </div>
-                        `;
-                    }
-                });
-                
-                flowingGallery.appendChild(galleryItem);
+            // 创建两组完全相同的照片（共28张）
+            // 第一组：14张照片
+            localPhotos.forEach((photo, index) => {
+                createGalleryItem(photo, index, false);
             });
             
-            // 设置动画
-            flowingGallery.style.animation = 'scrollGallery 20s linear infinite';
+            // 第二组：14张照片（与第一组完全相同）
+            localPhotos.forEach((photo, index) => {
+                createGalleryItem(photo, index, true);
+            });
+            
+            // 设置默认动画速度（正常速度：15秒滚动一组照片）
+            changeGallerySpeed('normal');
+        }
+        
+        // 创建画廊项目
+        function createGalleryItem(photo, index, isDuplicate) {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.dataset.index = index;
+            if (isDuplicate) galleryItem.dataset.duplicate = 'true';
+            
+            // 检查图片是否存在
+            checkImageExists(photo.url, function(exists) {
+                if (exists) {
+                    const img = document.createElement('img');
+                    img.src = photo.url;
+                    img.alt = photo.caption;
+                    img.className = 'gallery-image';
+                    galleryItem.appendChild(img);
+                } else {
+                    // 如果图片不存在，显示占位符
+                    galleryItem.innerHTML = `
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 300px; color: #9a8c7a; background: rgba(232, 226, 217, 0.3); border-radius: 10px; padding: 10px;">
+                            <div style="font-size: 2em; margin-bottom: 10px;">❌</div>
+                            <div style="text-align: center; font-size: 0.9em;">图片未找到</div>
+                            <div style="font-size: 0.8em; margin-top: 5px;">${photo.url}</div>
+                        </div>
+                    `;
+                }
+            });
+            
+            flowingGallery.appendChild(galleryItem);
         }
         
         // 暂停画廊流动
@@ -1949,13 +1983,13 @@ background: #F5ECE0;
             let duration;
             switch(speed) {
                 case 'slow':
-                    duration = '15s';
+                    duration = '28s'; // 慢速：14秒滚动14张照片（每组7秒，两组14秒）
                     break;
                 case 'fast':
-                    duration = '3s';
+                    duration = '6s'; // 快速：3秒滚动14张照片（每组1.5秒，两组3秒）
                     break;
                 default:
-                    duration = '7s';
+                    duration = '15s'; // 正常：7.5秒滚动14张照片（每组7.5秒，两组15秒）
             }
             flowingGallery.style.animation = `scrollGallery ${duration} linear infinite`;
         }
@@ -2003,5 +2037,3 @@ background: #F5ECE0;
     </script>
 </body>
 </html>
-
-

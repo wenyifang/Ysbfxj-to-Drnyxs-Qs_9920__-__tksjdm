@@ -919,6 +919,13 @@
             transform: scale(1.1);
             background: rgba(168, 181, 193, 1);
         }
+
+        /* 添加脉冲动画 */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
         
         /* ================== 响应式设计（重点修复手机适配） ================== */
         @media (max-width: 768px) {
@@ -1201,7 +1208,7 @@
     <!-- ================== 背景音乐播放器 ================== -->
     <audio id="backgroundMusic" loop>
         <!-- 请将以下src替换为您的音乐文件路径 -->
-        <source src="Tiffany Alvord - Baby I Love You.mp3" type="audio/mpeg">
+        <source src="music.mp3" type="audio/mpeg">
     </audio>
     
     <!-- ================== 音乐控制按钮 ================== -->
@@ -1283,7 +1290,7 @@
             <div class="letter-content">
                 <p>我亲爱滴老公：</p>
                <p>日历刷刷翻页，终于到了我家宝宝的专属好日子——生日快乐呀，我最最想念的人。这是我们认识以来陪你度过的第二个生日，更惊喜的是，我们已经从恋人变成了相守一生的夫妻，可惜不能粘在你身边，只能隔着千山万水，把满格的想念和祝福都敲进字里~</p>
-                <p>军恋的日子，好像总在等待中度过。没有朝夕相伴的温柔，没有随叫随到的依靠，更多的时候，是隔着山海的牵挂，是消息晚回的落寞，是别人团聚时的孤单。可我从来没后悔过选择你，也没怪过这份感情里的不容易。我懂你身为军人的使命，懂你“舍小家为大家”的坚守，也懂你每次视频时，眼底藏着的对我的亏欠与牵挂。（这句听起很假对不对，哈哈哈哈，那是我抄的，其实我的格局里只有你~~///(^v^)\\\~~）</p>
+                <p>军恋的日子，好像总在等待中度过。没有朝夕相伴的温柔，没有随叫随到的依靠，更多的时候，是隔着山海的牵挂，是消息晚回的落寞，是别人团聚时的孤单。可我从来没后悔过选择你，也没怪过这份感情里的不容易。我懂你身为军人的使命，懂你"舍小家为大家"的坚守，也懂你每次视频时，眼底藏着的对我的亏欠与牵挂。（这句听起很假对不对，哈哈哈哈，那是我抄的，其实我的格局里只有你~~///(^v^)\\\~~）</p>
                 <p>很多时候，我也会偷偷难过，觉得自己好可怜，30年感觉自己永远都是一个人。我每次都说你对我不好，可能是越来越爱你，对你的需求越来越高，总是期望我喊痛的时候你能放下手头上的事来关心我，在一起就时时粘我身上，不管去哪都牵我的手，能体贴到所有，能对我满怀亏欠，能让我感受到你爱我。但你自从结了婚就不恋爱脑了，哼！让我感动的事情屈指可数。可即便如此，我还是很喜欢你，说不清原因，不只是被爱，爱你也是很幸福的事情。这份双向的奔赴，才能让所有思念都有了着落，让所有的等待都有了意义。</p>
                 <p>我想要的从来不是轰轰烈烈的浪漫，而是平安顺遂的日常。只要知道你一切安好，只要能偶尔收到你的消息，只要休假的时候能给我极致的温柔，只要一想到我们的未来，所有的孤单和辛苦都变得值得。我喜欢看你穿着军装的挺拔身姿，喜欢每次重逢时你的拥抱——这些，都是支撑我走下去的力量。</p>
                <p>亲爱的寿星佬，生日这天我没啥华丽的祝福，只有最实在的期盼：愿你别总硬扛着疲惫，累了就好好歇一歇；愿你往后的一天，都能被温柔以待，少点烦心琐事，多点舒心时光；愿我们之间的爱意，能在岁岁年年里，愈发醇厚绵长。对我来说，你从不是什么遥不可及的英雄，只是我想一辈子捧在手心的宝贝。天气转凉了，记得多添衣物，训练时一定要注意安全，别太劳累。照顾好自己，就是对我最好的承诺。我在这边超乖的，按时吃饭不熬夜，听你的话，不让你分心，乖乖等你休假，等你回来。收到我给你的超惊喜礼物了吧，为了你的礼物，我琢磨好久呢，好怕买的你用不上，想旁敲侧击的问你想要啥，但又怕少了惊喜，总之你要记得那满载着你老婆的浓浓爱意。往后的日子，我继续做你最靠谱的后盾，你往前走，我就稳稳跟在你身后，我们一起把剩下的岁岁年年，都过成甜甜的模样。</p>
@@ -1380,50 +1387,73 @@
     </div>
 
     <script>
-        // ================== 新增：背景音乐功能 ==================
+        // ================== 修改后的背景音乐功能 ==================
         const backgroundMusic = document.getElementById('backgroundMusic');
         const musicToggleBtn = document.getElementById('musicToggleBtn');
         let isMusicPlaying = false;
-        
+
+        // 简化版的初始化音乐功能
+        function initMusic() {
+            // 始终显示音乐按钮
+            musicToggleBtn.style.display = 'flex';
+            musicToggleBtn.innerHTML = '<i class="fas fa-music"></i>';
+            
+            // 尝试预加载音乐
+            backgroundMusic.load();
+        }
+
         // 播放音乐函数
         function playMusic() {
-            if (backgroundMusic.src && backgroundMusic.src !== '') {
-                const playPromise = backgroundMusic.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        isMusicPlaying = true;
-                        musicToggleBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    }).catch(error => {
-                        console.log('自动播放被阻止:', error);
-                        // 显示提示
-                        setTimeout(() => {
-                            alert('点击右下角音乐按钮播放背景音乐');
-                        }, 1000);
-                    });
-                }
+            const playPromise = backgroundMusic.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    isMusicPlaying = true;
+                    musicToggleBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                }).catch(error => {
+                    console.log('音乐播放失败:', error);
+                    // 显示提示，引导用户点击播放
+                    musicToggleBtn.style.animation = 'pulse 2s infinite';
+                    musicToggleBtn.innerHTML = '<i class="fas fa-music"></i>';
+                    isMusicPlaying = false;
+                    
+                    setTimeout(() => {
+                        musicToggleBtn.style.animation = '';
+                    }, 5000);
+                });
             }
         }
-        
+
+        // 暂停音乐函数
+        function pauseMusic() {
+            backgroundMusic.pause();
+            isMusicPlaying = false;
+            musicToggleBtn.innerHTML = '<i class="fas fa-music"></i>';
+        }
+
         // 切换音乐播放状态
         function toggleMusic() {
-            if (!backgroundMusic.src || backgroundMusic.src === '') {
-                alert('请添加音乐文件并命名为 music.mp3');
-                return;
-            }
-            
             if (isMusicPlaying) {
-                backgroundMusic.pause();
-                musicToggleBtn.innerHTML = '<i class="fas fa-music"></i>';
+                pauseMusic();
             } else {
                 playMusic();
             }
-            isMusicPlaying = !isMusicPlaying;
         }
-        
+
         // 初始化音乐按钮事件
-        musicToggleBtn.addEventListener('click', toggleMusic);
-        
+        musicToggleBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMusic();
+        });
+
+        // 添加触摸事件支持移动端
+        musicToggleBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMusic();
+        });
+
         // ================== 密码保护功能 ==================
         // 配置密码（请修改这个值为您自己的密码）
         const CORRECT_PASSWORD = "20250829"; // 默认密码：5201314（我爱你一生一世）
@@ -1562,9 +1592,13 @@
                 setTimeout(() => {
                     contentArea.classList.add('show');
                     
-                    // 显示音乐按钮并自动播放音乐
-                    musicToggleBtn.style.display = 'flex';
-                    playMusic();
+                    // 初始化音乐功能
+                    initMusic();
+                    
+                    // 延迟尝试播放音乐（用户已经与页面交互）
+                    setTimeout(() => {
+                        playMusic();
+                    }, 500);
                     
                     // 初始化照片功能
                     initCarousel();
@@ -1581,8 +1615,8 @@
                 sessionStorage.removeItem('loveLetterUnlocked');
                 sessionStorage.removeItem('unlockTime');
                 
-                // 隐藏音乐按钮
-                musicToggleBtn.style.display = 'none';
+                // 暂停音乐
+                pauseMusic();
                 
                 // 隐藏内容区域
                 contentArea.classList.remove('show');
@@ -1969,4 +2003,3 @@
     </script>
 </body>
 </html>
-

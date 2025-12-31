@@ -442,7 +442,7 @@
             left: 25px;
             width: 130px;
             height: 150px;
-            background: linear-gradient(45deg, #a8b5c1, #d1d9e1);
+background: linear-gradient(45deg, #EEDFE3, #C9A8B9);
             border-radius: 8px;
             transform: rotate(-4deg);
             display: flex;
@@ -474,7 +474,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: #7a8b99;
+            color:#B39AAA;
             font-weight: 400;
             background: rgba(255, 255, 255, 0.9);
             box-shadow: 0 0 20px rgba(196, 182, 166, 0.2);
@@ -1274,7 +1274,7 @@
             
             <div class="mld-seal">
                 <div>嘿嘿~</div>
-                <div style="margin: 1px 0; font-size: 1.4em;"> 📸 </div>
+                <div style="margin: 1px 0; font-size: 1.5em;"> 📸 </div>
                 <div>爱你~</div>
             </div>
             
@@ -1949,13 +1949,13 @@
             let duration;
             switch(speed) {
                 case 'slow':
-                    duration = '60s';
-                    break;
-                case 'fast':
                     duration = '20s';
                     break;
+                case 'fast':
+                    duration = '5s';
+                    break;
                 default:
-                    duration = '40s';
+                    duration = '8s';
             }
             flowingGallery.style.animation = `scrollGallery ${duration} linear infinite`;
         }
@@ -2003,4 +2003,3 @@
     </script>
 </body>
 </html>
-
